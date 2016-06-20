@@ -1,6 +1,15 @@
+# Minimum Viable Product
+
+A maze with with a character you can move through to the end.
+
+
 # Specs
 
-### Needs
+##### Needs
+
+* Construct array of arrays
+
+* Loop through to create object in each space
 
 * Construct static maze with spaces
 
@@ -12,10 +21,43 @@
 
 * Beginning and end coordinates where end coordinates signify victory
 
+
+#### Wants
+
 * Move player with keys
 
-### Wants
+#### Wishlist
+
+* Minotaur creation
 
 * Random maze generator
 
-* Minotaur creation
+
+# Schedule
+
+#### Tuesday
+
+* Starting point - Reviewing what we learned, dividing tasks
+
+* By noon - have maze and mazespaces objects completed
+
+* By 4 - create player object,  ability to move
+
+* 4-5 Review the day, reassess goals, plan for Wedneday
+
+
+#### Wednesday
+
+* Refactoring
+
+* AI/Minotaur
+
+* Styling
+
+#### Thursday
+
+* Different levels
+
+* Refactoring
+
+* Victory celebration
