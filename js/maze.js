@@ -55,12 +55,12 @@ Maze.prototype.isInside = function(x, y) {
   }
 }
 
-Maze.prototype.setWall = function (x, y, direction) {
-    this.spaces[x][y].setWall(direction);
+Maze.prototype.createWall = function (x, y, direction) {
+    this.spaces[x][y].setWallDirection(direction);
     return true;
 }
 
-MazeSpace.prototype.setWall = function(direction) {
+MazeSpace.prototype.setWallDirection = function(direction) {
   this[direction] = true;
 }
 
@@ -70,20 +70,20 @@ $(document).ready(function() {
   maze = new Maze(5,5);
   maze.setStart(1,1, "north");
   maze.setEnd(5,5);
-  maze.setWall(1,1, "east");
-  maze.setWall(1,2, "east");
-  maze.setWall(1,3, "east");
-  maze.setWall(1,4, "east");
-  maze.setWall(2,5, "east");
-  maze.setWall(2,4, "east");
-  maze.setWall(2,3, "east");
-  maze.setWall(2,2, "east");
-  maze.setWall(3,1, "east");
-  maze.setWall(3,2, "east");
-  maze.setWall(3,3, "east");
-  maze.setWall(3,4, "east");
-  maze.setWall(4,5, "east");
-  maze.setWall(4,4, "east");
-  maze.setWall(4,3, "east");
-  maze.setWall(4,2, "east");
+  maze.createWall(1,1, "east");
+  maze.createWall(1,2, "east");
+  maze.createWall(1,3, "east");
+  maze.createWall(1,4, "east");
+  maze.createWall(2,5, "east");
+  maze.createWall(2,4, "east");
+  maze.createWall(2,3, "east");
+  maze.createWall(2,2, "east");
+  maze.createWall(3,1, "east");
+  maze.createWall(3,2, "east");
+  maze.createWall(3,3, "east");
+  maze.createWall(3,4, "east");
+  maze.createWall(4,5, "east");
+  maze.createWall(4,4, "east");
+  maze.createWall(4,3, "east");
+  maze.createWall(4,2, "east");
 });

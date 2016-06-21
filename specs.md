@@ -39,9 +39,9 @@ A maze with with a character you can move through to the end.
 
 * Starting point - Reviewing what we learned, dividing tasks
 
-* By noon - have maze and mazespaces objects completed
+* By noon - have player object and movement, and maze front-end
 
-* By 4 - create player object,  ability to move
+* By 4 - ability to move, player movement interface
 
 * 4-5 Review the day, reassess goals, plan for Wedneday
 
