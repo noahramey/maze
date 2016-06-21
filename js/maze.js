@@ -74,10 +74,16 @@ Maze.prototype.render = function() {
       if (maze.spaces[x][y]["east"] === true) {
         $mazeSpace.addClass("eastWall");
       }
+      // if (player.maze.spaces[x][y].playerspace === true) {
+      //   $mazeSpace.addClass("playerSpace");
+      // }
     }
   }
 }
 
+Maze.prototype.renderSpace = function () {
+  player.maze.spaces[x][y].playerspace = true;
+};
 // function boundryCheck(oldx, oldy, newx, newy)
 //   if (this.maze.isInside(this.x, this.y) === false) {
 //     this.x = x;
@@ -88,17 +94,15 @@ Maze.prototype.render = function() {
 
 Player.prototype.movement = function(x, y) {
   if (this.maze.spaces[x][y].north === false) {
-    // if (0) {
-      this.x = x;
-      this.y = y+1;
+    this.x = x;
+    this.y = y+1;
       if (this.maze.isInside(this.x, this.y) === false) {
         this.x = x;
         this.y = y;
         return this.x, this.y;
       }
-    // }
     return this.x, this.y;
-  }
+    }
   if (this.maze.spaces[x][y].east === false) {
     // if (0) {
       this.x = x+1;
@@ -164,9 +168,8 @@ $(document).ready(function() {
   maze.createWall(4,2, "east");
 
   maze.render();
-  maze.spaces[1][1].addClass("startPoint");
 
   player = new Player(1,1, maze);
-  player.movement(1,3);
+  // player.movement(1,5);
   console.log(player.x, player.y);
 });
