@@ -43,6 +43,12 @@ A maze with with a character you can move through to the end.
 
 * By 4 - ability to move, player movement interface
 
+* Victory celebration
+
+* Different levels
+
+* Styling
+
 * 4-5 Review the day, reassess goals, plan for Wedneday
 
 
@@ -52,12 +58,9 @@ A maze with with a character you can move through to the end.
 
 * AI/Minotaur
 
-* Styling
+* Random generation
 
 #### Thursday
 
-* Different levels
 
 * Refactoring
-
-* Victory celebration

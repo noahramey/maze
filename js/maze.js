@@ -72,7 +72,9 @@ Maze.prototype.render = function() {
     mazeRow = $("<tr class='mazeRow'>").appendTo(".maze table");
     for (var x = 1; x <= this.width; x++) {
       $mazeSpace = $("<td class='mazeSpace'>").appendTo(mazeRow);
+
       $mazeSpace.append("")
+
       if (maze.spaces[x][y]["east"] === true) {
         $mazeSpace.addClass("eastWall");
       }
@@ -193,6 +195,12 @@ $(document).ready(function() {
 
   maze.render();
   player = new Player(1,1, maze);
+
+
+  $("#start").click(function() {
+    $("#intro").hide();
+    $("table").show();
+  });
 
 
   // console.log(player.x, player.y);
