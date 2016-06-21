@@ -229,6 +229,13 @@ $(document).ready(function() {
   maze.render();
   player = new Player(1,1, maze);
 
+
+
+  $("#start").click(function() {
+    $("#intro").hide();
+    $("table").show();
+  });
+
   $("#level2").click(function() {
     this.maze.spaces[5][5].playerSpace = false;
     this.maze.spaces[1][1].playerSpace = true;

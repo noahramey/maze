@@ -1,5 +1,6 @@
 /*LAYOUT*/
 .container {
+  padding-top: 40px;
   width: 100%;
   text-align: center;
 }
@@ -8,8 +9,13 @@ table {
   border: 2px solid black;
   height: 500px;
   width: 500px;
-  background: salmon;
+  background: none;
   margin: 0 auto;
+  display: none;
+  background-image: url(../policelights.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 td {
@@ -17,8 +23,14 @@ td {
   border-right: 1px solid grey;*/
 }
 
+#intro {
+  height: 500px;
+  width: 500px;
+  margin: 0 auto;
+}
+
 .eastWall {
-  border-right: 2px solid black;
+  border-right: 2px solid white;
 }
  .mazeSpace {
    height: 100px;
@@ -42,7 +54,7 @@ td {
   height: 500px;*/
 }
 
-button {
+.keypad {
   background: lightgrey;
   height: 70px;
   width: 70px;
@@ -58,7 +70,7 @@ button {
   font-size: 24px;
 }
 
-button:focus {
+.keypad:focus {
   outline: none;
 }
 
@@ -74,18 +86,25 @@ button:focus {
   margin-right: 5px;
 }
 
-.controls {
-  margin-top: 10px;
-  border: 1px solid red;
-  width: 500px;
-  background: lightslategrey;
+.controls, .instructions {
+  border: 1px solid black;
+  background: salmon;
   text-align: center;
   padding-bottom: 30px;
+  margin: 50px 0;
+
 }
 
-.controls h2 {
+.instructions p {
+  text-align: left;
+  padding: 0 10px;
+  font-size: 20px;
+}
+
+.controls h2, .instructions h2 {
   color: #f9f9f9;
   text-align: center;
   font-family: sans-serif;
   font-size: 2em;
+  padding-bottom: 20px;
 }
