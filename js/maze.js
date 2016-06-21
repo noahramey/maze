@@ -198,10 +198,27 @@ $(document).ready(function() {
   player = new Player(1,1, maze);
   console.log(player.x, player.y);
 
-  $('#north').click(function(){player.moveNorth(player.x, player.y)});
-  $('#east').click(function(){player.moveEast(player.x, player.y)});
-  $('#south').click(function(){player.moveSouth(player.x, player.y)});
-  $('#west').click(function(){player.moveWest(player.x, player.y)});
+  // $('#north').click(function(){player.moveNorth(player.x, player.y)});
+  // $('#east').click(function(){player.moveEast(player.x, player.y)});
+  // $('#south').click(function(){player.moveSouth(player.x, player.y)});
+  // $('#west').click(function(){player.moveWest(player.x, player.y)});
+
+  $(document).keydown(function(e){
+    switch(e.which) {
+      case 37: //left arrow
+        player.moveWest(player.x, player.y);
+        break;
+      case 38: //up arrow
+        player.moveNorth(player.x, player.y);
+        break;
+      case 39: //right arrow
+        player.moveEast(player.x, player.y);
+        break;
+      case 40: //down arrow
+        player.moveSouth(player.x, player.y);
+        break;
+    }
+  });
 
   console.log(player.x, player.y);
 });
