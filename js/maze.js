@@ -72,16 +72,18 @@ Maze.prototype.render = function() {
     mazeRow = $("<tr class='mazeRow'>").appendTo(".maze table");
     for (var x = 1; x <= this.width; x++) {
       $mazeSpace = $("<td class='mazeSpace'>").appendTo(mazeRow);
-      // $mazeSpace.append("(" + x + "," + y + ")")
+
+      $mazeSpace.append("")
+
       if (maze.spaces[x][y]["east"] === true) {
         $mazeSpace.addClass("eastWall");
+      }
+      if (maze.spaces[x][y]["north"] === true) {
+        $mazeSpace.addClass("northWall");
       }
       if (maze.spaces[x][y]["playerSpace"] === true) {
         $mazeSpace.addClass("playerSpace");
       }
-      // if (player.maze.spaces[x][y].playerspace === true) {
-      //   $mazeSpace.addClass("playerSpace");
-      // }
     }
   }
 }
@@ -90,8 +92,10 @@ MazeSpace.prototype.renderSpace = function (x, y) {
   this.playerSpace = true;
 };
 
-
-// function boundryCheck(oldx, oldy, newx, newy)
+/*************************************
+To refactor for movement functions later:
+**************************************/
+// function boundaryCheck(oldx, oldy, newx, newy)
 //   if (this.maze.isInside(this.x, this.y) === false) {
 //     this.x = x;
 //     this.y = y;
@@ -165,7 +169,7 @@ Player.prototype.moveWest = function(x, y) {
 }
 
 Player.prototype.win = function(){
-  if (player.x === 5 && player.y === 5) {
+  if (player.x === player.maze.endX && player.y === player.maze.endY) {
     $(".maze table").hide();
     $(".winning-image").fadeIn();
   }
@@ -176,53 +180,16 @@ $(document).ready(function() {
   maze = new Maze(5,5);
   maze.setStart(1,1, "north");
   maze.setEnd(5,5);
-  maze.createWall(1,1, "east");
-  maze.createWall(2,1, "west");
 
-  maze.createWall(1,2, "east");
-  maze.createWall(2,2, "west");
+  var xVertWallsArray = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4];
+  var yVertWallsArray = [1,2,3,4,5,4,3,2,1,2,3,4,5,4,3,2];
 
-  maze.createWall(1,3, "east");
-  maze.createWall(2,3, "west");
-
-  maze.createWall(1,4, "east");
-  maze.createWall(2,4, "west");
-
-  maze.createWall(2,5, "east");
-  maze.createWall(3,5, "west");
-
-  maze.createWall(2,4, "east");
-  maze.createWall(3,4, "west");
-
-  maze.createWall(2,3, "east");
-  maze.createWall(3,3, "west");
-
-  maze.createWall(2,2, "east");
-  maze.createWall(3,2, "west");
-
-  maze.createWall(3,1, "east");
-  maze.createWall(4,1, "west");
-
-  maze.createWall(3,2, "east");
-  maze.createWall(4,2, "west");
-
-  maze.createWall(3,3, "east");
-  maze.createWall(4,3, "west");
-
-  maze.createWall(3,4, "east");
-  maze.createWall(4,4, "west");
-
-  maze.createWall(4,5, "east");
-  maze.createWall(5,5, "west");
-
-  maze.createWall(4,4, "east");
-  maze.createWall(5,4, "west");
-
-  maze.createWall(4,3, "east");
-  maze.createWall(4,3, "west");
-
-  maze.createWall(4,2, "east");
-  maze.createWall(4,2, "west");
+  for (var i = 0; i < xVertWallsArray.length; i++) {
+    maze.createWall(xVertWallsArray[i], yVertWallsArray[i], "east");
+  }
+  for (var i = 0; i < xVertWallsArray.length; i++) {
+    maze.createWall(xVertWallsArray[i]+1, yVertWallsArray[i], "west");
+  }
 
   maze.spaces[1][1].playerSpace = true;
 
@@ -230,20 +197,13 @@ $(document).ready(function() {
   player = new Player(1,1, maze);
 
 
-
   $("#start").click(function() {
     $("#intro").hide();
     $("table").show();
   });
 
-  $("#level2").click(function() {
-    this.maze.spaces[5][5].playerSpace = false;
-    this.maze.spaces[1][1].playerSpace = true;
-    player.x = 1, player.y = 1;
-    // create 2nd level maze
-  });
 
-  console.log(player.x, player.y);
+  // console.log(player.x, player.y);
 
   $('#north').click(function(){player.moveNorth(player.x, player.y)});
   $('#north').mousedown(function(){$(this).toggleClass('btn-press')}); $('#north').mouseup(function(){$(this).toggleClass('btn-press')});
@@ -275,5 +235,5 @@ $(document).ready(function() {
     }
   });
 
-  console.log(player.x, player.y);
+  // console.log(player.x, player.y);
 });

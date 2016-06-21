@@ -8,7 +8,7 @@
 table {
   border: 2px solid black;
   height: 500px;
-  width: 500px;
+  width: 1000px;
   background: none;
   margin: 0 auto;
   display: none;
@@ -78,6 +78,10 @@ td {
   -webkit-box-shadow:  0px 6px 0px 3px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
   -moz-box-shadow: 0px 6px 0px 3px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
   box-shadow: 0px 6px 0px 3px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
+}
+
+.northWall {
+  border-top: 2px solid black;
 }
 
 #east, #west {
