@@ -115,6 +115,7 @@ Player.prototype.moveNorth = function(x, y) {
   console.log(this.x, this.y);
   this.maze.spaces[x][y+1].playerSpace = true;
   }
+  this.win();
   maze.render();
 }
 
@@ -130,6 +131,7 @@ Player.prototype.moveEast = function(x, y) {
   console.log(this.x, this.y);
   this.maze.spaces[x+1][y].playerSpace = true;
   }
+  this.win();
   maze.render();
 }
 
@@ -145,6 +147,7 @@ Player.prototype.moveSouth = function(x, y) {
   console.log(this.x, this.y);
   this.maze.spaces[x][y-1].playerSpace = true;
   }
+  this.win();
   maze.render();
 }
 
@@ -160,9 +163,16 @@ Player.prototype.moveWest = function(x, y) {
   console.log(this.x, this.y);
   this.maze.spaces[x-1][y].playerSpace = true;
   }
+  this.win();
   maze.render();
 }
 
+Player.prototype.win = function(){
+  if (player.x === 5 && player.y === 5) {
+    $(".maze table").hide();
+    $(".winning-image").fadeIn();
+  }
+}
 // USER INTERFACE LOGIC //
 
 $(document).ready(function() {
@@ -221,7 +231,12 @@ $(document).ready(function() {
   maze.render();
   player = new Player(1,1, maze);
 
-  // maze.renderSpace();
+  $("#level2").click(function() {
+    this.maze.spaces[5][5].playerSpace = false;
+    this.maze.spaces[1][1].playerSpace = true;
+    player.x = 1, player.y = 1;
+    // create 2nd level maze
+  });
 
   console.log(player.x, player.y);
 

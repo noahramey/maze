@@ -26,3 +26,9 @@ td {
   background-image: url(../playerIcon.jpg);
   background-size: contain;
 }
+
+.winning-image {
+  display: none;
+  /*width: 500px;
+  height: 500px;*/
+}
