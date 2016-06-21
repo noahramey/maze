@@ -96,5 +96,6 @@ $(document).ready(function() {
   maze.createWall(4,2, "east");
 
   maze.render();
+  maze.spaces[1][1].addClass("startPoint");
 
 });
