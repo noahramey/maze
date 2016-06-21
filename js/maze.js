@@ -202,8 +202,7 @@ $(document).ready(function() {
   console.log(player.x, player.y);
 
   $('#north').click(function(){player.moveNorth(player.x, player.y)});
-  $('#north').mousedown(function(){$(this).toggleClass('btn-press')});
-  $('#north').mouseup(function(){$(this).toggleClass('btn-press')});
+  $('#north').mousedown(function(){$(this).toggleClass('btn-press')}); $('#north').mouseup(function(){$(this).toggleClass('btn-press')});
   $('#east').click(function(){player.moveEast(player.x, player.y)});
   $('#east').mousedown(function(){$(this).toggleClass('btn-press')});
   $('#east').mouseup(function(){$(this).toggleClass('btn-press')});
@@ -221,6 +220,7 @@ $(document).ready(function() {
         break;
       case 38: //up arrow
         player.moveNorth(player.x, player.y);
+        // $('#north').toggleClass('btn-press');
         break;
       case 39: //right arrow
         player.moveEast(player.x, player.y);
