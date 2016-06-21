@@ -1,8 +1,15 @@
+/*LAYOUT*/
+.container {
+  width: 100%;
+  text-align: center;
+}
+
 table {
   border: 2px solid black;
   height: 500px;
   width: 500px;
   background: salmon;
+  margin: 0 auto;
 }
 
 td {
@@ -23,8 +30,10 @@ td {
 }
 
 .playerSpace {
-  background-image: url(../playerIcon.jpg);
-  background-size: contain;
+  background-image: url(../playerIcon.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .winning-image {

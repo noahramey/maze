@@ -72,7 +72,7 @@ Maze.prototype.render = function() {
     mazeRow = $("<tr class='mazeRow'>").appendTo(".maze table");
     for (var x = 1; x <= this.width; x++) {
       $mazeSpace = $("<td class='mazeSpace'>").appendTo(mazeRow);
-      $mazeSpace.append("(" + x + "," + y + ")")
+      // $mazeSpace.append("(" + x + "," + y + ")")
       if (maze.spaces[x][y]["east"] === true) {
         $mazeSpace.addClass("eastWall");
       }
