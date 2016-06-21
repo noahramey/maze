@@ -28,11 +28,11 @@ function MazeSpace() {
   this.west = false;
 }
 
-function Player() {
-  this.x = null;
-  this.y = null;
-  this.orientation = null;
-  this.maze = null;
+function Player(x,y,m) {
+  this.x = x;
+  this.y = y;
+  // this.orientation = null;
+  this.maze = m;
 }
 
 
@@ -47,9 +47,17 @@ Maze.prototype.setEnd = function(x, y) {
   this.endY = y;
 }
 
-Maze.prototype.createWall = function (x, y, direction) {
-    this.spaces[x][y].setWallDirection(direction);
+Maze.prototype.isInside = function(x, y) {
+  if (x>0 && x<this.width && y>0 && y<this.height) {
     return true;
+  } else {
+    return false;
+  }
+}
+
+Maze.prototype.createWall = function (x, y, direction) {
+  this.spaces[x][y].setWallDirection(direction);
+  return true;
 }
 
 MazeSpace.prototype.setWallDirection = function(direction) {
@@ -70,7 +78,67 @@ Maze.prototype.render = function() {
   }
 }
 
+// function boundryCheck(oldx, oldy, newx, newy)
+//   if (this.maze.isInside(this.x, this.y) === false) {
+//     this.x = x;
+//     this.y = y;
+//     newx = oldx;
+//     newy = oldy;
+// }
 
+Player.prototype.movement = function(x, y) {
+  if (this.maze.spaces[x][y].north === false) {
+    // if (0) {
+      this.x = x;
+      this.y = y+1;
+      if (this.maze.isInside(this.x, this.y) === false) {
+        this.x = x;
+        this.y = y;
+        return this.x, this.y;
+      }
+    // }
+    return this.x, this.y;
+  }
+  if (this.maze.spaces[x][y].east === false) {
+    // if (0) {
+      this.x = x+1;
+      this.y = y;
+      if (this.maze.isInside(this.x, this.y) === false) {
+        this.x = x;
+        this.y = y;
+        return this.x, this.y;
+      }
+    // }
+    return this.x, this.y;
+
+  }
+  if (this.maze.spaces[x][y].south === false) {
+    // if (0) {
+      this.x = x;
+      this.y = y-1;
+      if (this.maze.isInside(this.x, this.y) === false) {
+        this.x = x;
+        this.y = y;
+        return this.x, this.y;
+      }
+    // }
+    return this.x, this.y;
+
+  }
+  if (this.maze.spaces[x][y].west === false) {
+    // if (0) {
+      this.x = x-1;
+      this.y = y;
+      if (this.maze.isInside(this.x, this.y) === false) {
+        this.x = x;
+        this.y = y;
+        return this.x, this.y;
+      }
+    // }
+    return this.x, this.y;
+
+  }
+}
 
 // USER INTERFACE LOGIC //
 
@@ -98,4 +166,7 @@ $(document).ready(function() {
   maze.render();
   maze.spaces[1][1].addClass("startPoint");
 
+  player = new Player(1,1, maze);
+  player.movement(1,3);
+  console.log(player.x, player.y);
 });
