@@ -48,7 +48,7 @@ Maze.prototype.setEnd = function(x, y) {
 }
 
 Maze.prototype.isInside = function(x, y) {
-  if (x>0 && x<this.width && y>0 && y<this.height) {
+  if (x>0 && x<=this.width && y>0 && y<=this.height) {
     return true;
   } else {
     return false;
@@ -86,57 +86,55 @@ Maze.prototype.render = function() {
 //     newy = oldy;
 // }
 
-Player.prototype.movement = function(x, y) {
+// function buttonClick(direction) {
+//   document.getElementById(direction).onclick === true;
+// }
+
+Player.prototype.moveNorth = function(x, y) {
   if (this.maze.spaces[x][y].north === false) {
-    // if (0) {
+    this.x = x;
+    this.y = y+1;
+    if (this.maze.isInside(this.x, this.y) === false) {
       this.x = x;
-      this.y = y+1;
-      if (this.maze.isInside(this.x, this.y) === false) {
-        this.x = x;
-        this.y = y;
-        return this.x, this.y;
-      }
-    // }
-    return this.x, this.y;
+      this.y = y;
+    }
+  console.log(this.x, this.y);
   }
+}
+
+Player.prototype.moveEast = function(x, y) {
   if (this.maze.spaces[x][y].east === false) {
-    // if (0) {
-      this.x = x+1;
-      this.y = y;
-      if (this.maze.isInside(this.x, this.y) === false) {
-        this.x = x;
-        this.y = y;
-        return this.x, this.y;
-      }
-    // }
-    return this.x, this.y;
-
-  }
-  if (this.maze.spaces[x][y].south === false) {
-    // if (0) {
+    this.x = x+1;
+    this.y = y;
+    if (this.maze.isInside(this.x, this.y) === false) {
       this.x = x;
-      this.y = y-1;
-      if (this.maze.isInside(this.x, this.y) === false) {
-        this.x = x;
-        this.y = y;
-        return this.x, this.y;
-      }
-    // }
-    return this.x, this.y;
-
-  }
-  if (this.maze.spaces[x][y].west === false) {
-    // if (0) {
-      this.x = x-1;
       this.y = y;
-      if (this.maze.isInside(this.x, this.y) === false) {
-        this.x = x;
-        this.y = y;
-        return this.x, this.y;
-      }
-    // }
-    return this.x, this.y;
+    }
+  console.log(this.x, this.y);
+  }
+}
 
+Player.prototype.moveSouth = function(x, y) {
+  if (this.maze.spaces[x][y].south === false) {
+    this.x = x;
+    this.y = y-1;
+    if (this.maze.isInside(this.x, this.y) === false) {
+      this.x = x;
+      this.y = y;
+    }
+  console.log(this.x, this.y);
+  }
+}
+
+Player.prototype.moveWest = function(x, y) {
+  if (this.maze.spaces[x][y].west === false) {
+    this.x = x-1;
+    this.y = y;
+    if (this.maze.isInside(this.x, this.y) === false) {
+      this.x = x;
+      this.y = y;
+    }
+  console.log(this.x, this.y);
   }
 }
 
@@ -147,25 +145,63 @@ $(document).ready(function() {
   maze.setStart(1,1, "north");
   maze.setEnd(5,5);
   maze.createWall(1,1, "east");
+  maze.createWall(2,1, "west");
+
   maze.createWall(1,2, "east");
+  maze.createWall(2,2, "west");
+
   maze.createWall(1,3, "east");
+  maze.createWall(2,3, "west");
+
   maze.createWall(1,4, "east");
+  maze.createWall(2,4, "west");
+
   maze.createWall(2,5, "east");
+  maze.createWall(3,5, "west");
+
   maze.createWall(2,4, "east");
+  maze.createWall(3,4, "west");
+
   maze.createWall(2,3, "east");
+  maze.createWall(3,3, "west");
+
   maze.createWall(2,2, "east");
+  maze.createWall(3,2, "west");
+
   maze.createWall(3,1, "east");
+  maze.createWall(4,1, "west");
+
   maze.createWall(3,2, "east");
+  maze.createWall(4,2, "west");
+
   maze.createWall(3,3, "east");
+  maze.createWall(4,3, "west");
+
   maze.createWall(3,4, "east");
+  maze.createWall(4,4, "west");
+
   maze.createWall(4,5, "east");
+  maze.createWall(5,5, "west");
+
   maze.createWall(4,4, "east");
+  maze.createWall(5,4, "west");
+
   maze.createWall(4,3, "east");
+  maze.createWall(4,3, "west");
+
   maze.createWall(4,2, "east");
+  maze.createWall(4,2, "west");
+
 
   maze.render();
 
   player = new Player(1,1, maze);
-  player.movement(1,3);
+  console.log(player.x, player.y);
+
+  $('#north').click(function(){player.moveNorth(player.x, player.y)});
+  $('#east').click(function(){player.moveEast(player.x, player.y)});
+  $('#south').click(function(){player.moveSouth(player.x, player.y)});
+  $('#west').click(function(){player.moveWest(player.x, player.y)});
+
   console.log(player.x, player.y);
 });
