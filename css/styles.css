@@ -1,10 +1,19 @@
 table {
-  border: 1px solid black;
+  border: 2px solid black;
   height: 500px;
   width: 500px;
+  background: salmon;
 }
 
 td {
-  border-bottom: 1px solid grey;
-  border-right: 1px solid grey;
+  /*border-bottom: 1px solid grey;
+  border-right: 1px solid grey;*/
 }
+
+.eastWall {
+  border-right: 2px solid black;
+}
+ .mazeSpace {
+   height: 100px;
+   width: 100px;
+ }

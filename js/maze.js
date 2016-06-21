@@ -47,14 +47,6 @@ Maze.prototype.setEnd = function(x, y) {
   this.endY = y;
 }
 
-Maze.prototype.isInside = function(x, y) {
-  if (x>0 && x<this.width && y>0 && y<this.height) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
 Maze.prototype.createWall = function (x, y, direction) {
     this.spaces[x][y].setWallDirection(direction);
     return true;
@@ -63,6 +55,22 @@ Maze.prototype.createWall = function (x, y, direction) {
 MazeSpace.prototype.setWallDirection = function(direction) {
   this[direction] = true;
 }
+
+Maze.prototype.render = function() {
+  var mazeRow, $mazeSpace;
+  for (var y = this.height; y >= 1; y--) {
+    mazeRow = $("<tr class='mazeRow'>").appendTo(".maze table");
+    for (var x = 1; x <= this.width; x++) {
+      $mazeSpace = $("<td class='mazeSpace'>").appendTo(mazeRow);
+      $mazeSpace.append("(" + x + "," + y + ")")
+      if (maze.spaces[x][y]["east"] === true) {
+        $mazeSpace.addClass("eastWall");
+      }
+    }
+  }
+}
+
+
 
 // USER INTERFACE LOGIC //
 
@@ -86,4 +94,7 @@ $(document).ready(function() {
   maze.createWall(4,4, "east");
   maze.createWall(4,3, "east");
   maze.createWall(4,2, "east");
+
+  maze.render();
+
 });
