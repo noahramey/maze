@@ -32,3 +32,51 @@ td {
   /*width: 500px;
   height: 500px;*/
 }
+
+button {
+  background: lightgrey;
+  height: 70px;
+  width: 70px;
+  display: block;
+  margin: 0 auto;
+  box-shadow:
+  -webkit-box-shadow:  0px 6px 0px 6px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
+  -moz-box-shadow: 0px 6px 0px 6px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
+  box-shadow: 0px 6px 0px 6px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
+  margin-bottom: 20px;
+  border: 1px solid #222;
+  border-top: none;
+  font-size: 24px;
+}
+
+button:focus {
+  outline: none;
+}
+
+.btn-press {
+  -webkit-box-shadow:  0px 6px 0px 3px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
+  -moz-box-shadow: 0px 6px 0px 3px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
+  box-shadow: 0px 6px 0px 3px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
+}
+
+#east, #west {
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.controls {
+  margin-top: 10px;
+  border: 1px solid red;
+  width: 500px;
+  background: lightslategrey;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.controls h2 {
+  color: #f9f9f9;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 2em;
+}
