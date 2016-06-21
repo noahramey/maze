@@ -202,9 +202,17 @@ $(document).ready(function() {
   console.log(player.x, player.y);
 
   $('#north').click(function(){player.moveNorth(player.x, player.y)});
+  $('#north').mousedown(function(){$(this).toggleClass('btn-press')});
+  $('#north').mouseup(function(){$(this).toggleClass('btn-press')});
   $('#east').click(function(){player.moveEast(player.x, player.y)});
+  $('#east').mousedown(function(){$(this).toggleClass('btn-press')});
+  $('#east').mouseup(function(){$(this).toggleClass('btn-press')});
   $('#south').click(function(){player.moveSouth(player.x, player.y)});
+  $('#south').mousedown(function(){$(this).toggleClass('btn-press')});
+  $('#south').mouseup(function(){$(this).toggleClass('btn-press')});
   $('#west').click(function(){player.moveWest(player.x, player.y)});
+  $('#west').mousedown(function(){$(this).toggleClass('btn-press')});
+  $('#west').mouseup(function(){$(this).toggleClass('btn-press')});
 
   $(document).keydown(function(e){
     switch(e.which) {
