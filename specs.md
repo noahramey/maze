@@ -54,11 +54,19 @@ A maze with with a character you can move through to the end.
 
 #### Wednesday
 
-* Refactoring
+* By Noon:
+
+* add damn images into folder
 
 * AI/Minotaur
 
 * Random generation
+
+* By End of Day:
+
+* Refactoring repetitive code & separate into separate files
+
+* MVP done with two levels, including styling, themes
 
 #### Thursday
 
