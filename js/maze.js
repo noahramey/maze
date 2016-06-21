@@ -28,6 +28,13 @@ function MazeSpace() {
   this.west = false;
 }
 
+function Player() {
+  this.x = null;
+  this.y = null;
+  this.orientation = null;
+  this.maze = null;
+}
+
 
 Maze.prototype.setStart = function(x, y, orientation) {
   this.startX = x;
@@ -49,23 +56,13 @@ Maze.prototype.isInside = function(x, y) {
 }
 
 Maze.prototype.setWall = function (x, y, direction) {
-  if (x > 0 && x <= this.width && y > 0 && y <= this.height && this.directions.indexOf(direction) !== -1) {
     this.spaces[x][y].setWall(direction);
     return true;
-  }
-  return false;
 }
 
 MazeSpace.prototype.setWall = function(direction) {
   this[direction] = true;
 }
-
-
-
-
-
-
-
 
 // USER INTERFACE LOGIC //
 
