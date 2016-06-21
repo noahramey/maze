@@ -86,8 +86,8 @@ Maze.prototype.render = function() {
   }
 }
 
-Maze.prototype.renderSpace = function (x, y) {
-  player.maze.spaces[x][y]["playerSpace"] = true;
+MazeSpace.prototype.renderSpace = function (x, y) {
+  this.playerSpace = true;
 };
 
 
@@ -105,6 +105,7 @@ Maze.prototype.renderSpace = function (x, y) {
 
 Player.prototype.moveNorth = function(x, y) {
   if (this.maze.spaces[x][y].north === false) {
+    this.maze.spaces[x][y].playerSpace = false;
     this.x = x;
     this.y = y+1;
     if (this.maze.isInside(this.x, this.y) === false) {
@@ -112,11 +113,14 @@ Player.prototype.moveNorth = function(x, y) {
       this.y = y;
     }
   console.log(this.x, this.y);
+  this.maze.spaces[x][y+1].playerSpace = true;
   }
+  maze.render();
 }
 
 Player.prototype.moveEast = function(x, y) {
   if (this.maze.spaces[x][y].east === false) {
+    this.maze.spaces[x][y].playerSpace = false;
     this.x = x+1;
     this.y = y;
     if (this.maze.isInside(this.x, this.y) === false) {
@@ -124,11 +128,14 @@ Player.prototype.moveEast = function(x, y) {
       this.y = y;
     }
   console.log(this.x, this.y);
+  this.maze.spaces[x+1][y].playerSpace = true;
   }
+  maze.render();
 }
 
 Player.prototype.moveSouth = function(x, y) {
   if (this.maze.spaces[x][y].south === false) {
+    this.maze.spaces[x][y].playerSpace = false;
     this.x = x;
     this.y = y-1;
     if (this.maze.isInside(this.x, this.y) === false) {
@@ -136,11 +143,14 @@ Player.prototype.moveSouth = function(x, y) {
       this.y = y;
     }
   console.log(this.x, this.y);
+  this.maze.spaces[x][y-1].playerSpace = true;
   }
+  maze.render();
 }
 
 Player.prototype.moveWest = function(x, y) {
   if (this.maze.spaces[x][y].west === false) {
+    this.maze.spaces[x][y].playerSpace = false;
     this.x = x-1;
     this.y = y;
     if (this.maze.isInside(this.x, this.y) === false) {
@@ -148,7 +158,9 @@ Player.prototype.moveWest = function(x, y) {
       this.y = y;
     }
   console.log(this.x, this.y);
+  this.maze.spaces[x-1][y].playerSpace = true;
   }
+  maze.render();
 }
 
 // USER INTERFACE LOGIC //
@@ -205,9 +217,10 @@ $(document).ready(function() {
   maze.createWall(4,2, "east");
   maze.createWall(4,2, "west");
 
-
+  maze.spaces[1][1].playerSpace = true;
   maze.render();
   player = new Player(1,1, maze);
+
   // maze.renderSpace();
 
   console.log(player.x, player.y);

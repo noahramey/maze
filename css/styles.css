@@ -23,5 +23,6 @@ td {
 }
 
 .playerSpace {
-  background-color: aqua;
+  background-image: url(../playerIcon.jpg);
+  background-size: contain;
 }
