@@ -92,9 +92,6 @@ Maze.prototype.renderSpace = function () {
 //     newy = oldy;
 // }
 
-// function buttonClick(direction) {
-//   document.getElementById(direction).onclick === true;
-// }
 
 Player.prototype.moveNorth = function(x, y) {
   if (this.maze.spaces[x][y].north === false) {
@@ -198,17 +195,16 @@ $(document).ready(function() {
   maze.createWall(4,2, "east");
   maze.createWall(4,2, "west");
 
-
   maze.render();
 
   player = new Player(1,1, maze);
 
   console.log(player.x, player.y);
 
-  // $('#north').click(function(){player.moveNorth(player.x, player.y)});
-  // $('#east').click(function(){player.moveEast(player.x, player.y)});
-  // $('#south').click(function(){player.moveSouth(player.x, player.y)});
-  // $('#west').click(function(){player.moveWest(player.x, player.y)});
+  $('#north').click(function(){player.moveNorth(player.x, player.y)});
+  $('#east').click(function(){player.moveEast(player.x, player.y)});
+  $('#south').click(function(){player.moveSouth(player.x, player.y)});
+  $('#west').click(function(){player.moveWest(player.x, player.y)});
 
   $(document).keydown(function(e){
     switch(e.which) {
