@@ -8,11 +8,7 @@
 table {
   border: 2px solid black;
   height: 500px;
-<<<<<<< HEAD
   width: 1000px;
-  background: salmon;
-=======
-  width: 500px;
   background: none;
   margin: 0 auto;
   display: none;
@@ -20,7 +16,6 @@ table {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
->>>>>>> 79dbb4db04199de69f9b163905727e543d9cecab
 }
 
 td {
