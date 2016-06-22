@@ -65,11 +65,14 @@ A maze with with a character you can move through to the end.
 
   * Make robot move
 
-  * For each move of the player, robot moves once
+  * Robot moves constantly in a random direction
 
-* Random generation
 
 * By End of Day:
+
+* Add border walls
+
+* Add pits to maze
 
 * Refactoring repetitive code & separate into separate files
 
