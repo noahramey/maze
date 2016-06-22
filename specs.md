@@ -74,11 +74,13 @@ A maze with with a character you can move through to the end.
 
 * Add pits to maze
 
-* Refactoring repetitive code & separate into separate files
+* Refactoring repetitive code
 
 * MVP done with two levels, including styling, themes
 
 #### Thursday
+* & separate into separate files
 
+* add maze levels
 
 * Refactoring
