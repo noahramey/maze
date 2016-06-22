@@ -34,7 +34,6 @@ function MazeSpace() {
 function Player(x,y,m) {
   this.x = x;
   this.y = y;
-  // this.orientation = null;
   this.maze = m;
 }
 
@@ -89,9 +88,9 @@ Maze.prototype.render = function() {
       if (maze.spaces[x][y]["minotaurSpace"] === true) {
         $mazeSpace.addClass("minotaurSpace");
       }
-      if (maze.spaces[x][y]["gavelSpace"] === true) {
-        $mazeSpace.toggleClass("gavelSpace");
-      }
+      // if (maze.spaces[x][y]["gavelSpace"] === true) {
+      //   $mazeSpace.toggleClass("gavelSpace");
+      // }
     }
   }
 }
@@ -126,7 +125,8 @@ Player.prototype.moveNorth = function(x, y) {
   }
   this.win();
   maze.render();
-  player.gavel();
+  // player.gavel();
+  minoCrunch();
 }
 
 Player.prototype.moveEast = function(x, y) {
@@ -143,7 +143,9 @@ Player.prototype.moveEast = function(x, y) {
   }
   this.win();
   maze.render();
-  player.gavel();
+  // player.gavel();
+  minoCrunch();
+
 }
 
 Player.prototype.moveSouth = function(x, y) {
@@ -160,7 +162,9 @@ Player.prototype.moveSouth = function(x, y) {
   }
   this.win();
   maze.render();
-  player.gavel();
+  // player.gavel();
+  minoCrunch();
+
 }
 
 Player.prototype.moveWest = function(x, y) {
@@ -177,7 +181,9 @@ Player.prototype.moveWest = function(x, y) {
   }
   this.win();
   maze.render();
-  player.gavel();
+  // player.gavel();
+  minoCrunch();
+
 }
 
 
@@ -211,6 +217,8 @@ Player.prototype.minotaurNorth = function(x, y) {
   }
   this.win();
   maze.render();
+  minoCrunch();
+
 }
 
 Player.prototype.minotaurEast = function(x, y) {
@@ -226,6 +234,8 @@ Player.prototype.minotaurEast = function(x, y) {
   }
   this.win();
   maze.render();
+  minoCrunch();
+
 }
 
 Player.prototype.minotaurSouth = function(x, y) {
@@ -241,6 +251,8 @@ Player.prototype.minotaurSouth = function(x, y) {
   }
   this.win();
   maze.render();
+  minoCrunch();
+
 }
 
 Player.prototype.minotaurWest = function(x, y) {
@@ -256,6 +268,8 @@ Player.prototype.minotaurWest = function(x, y) {
   }
   this.win();
   maze.render();
+  minoCrunch();
+
 }
 
 
@@ -267,13 +281,23 @@ Player.prototype.win = function(){
   }
 }
 
-Maze.prototype.gavel = function(x, y) {
-  maze.spaces[x][y].gavelSpace = true;
-}
+// Maze.prototype.gavel = function(x, y) {
+//   maze.spaces[x][y].gavelSpace = true;
+// }
 
 Player.prototype.gavel = function() {
   if (this.x === 2 && this.y === 10) {
     alert("you dead");
+  }
+}
+
+function minoCrunch() {
+  if(player.x === minotaur.x && player.y === minotaur.y) {
+    alert("You're going to the slammer");
+    maze.spaces[player.x][player.y].playerSpace = false;
+    maze.spaces[1][10].playerSpace = true;
+    player.x = 1;
+    player.y = 10;
   }
 }
 
@@ -332,7 +356,7 @@ $(document).ready(function() {
     }
     maze.spaces[1][10].playerSpace = true;
 
-    maze.gavel(2, 10);
+    // maze.gavel(2, 10);
     maze.render();
 
     function minoTimer() {
@@ -342,7 +366,7 @@ $(document).ready(function() {
     var myMinoMove = setInterval(minoTimer, 200);
     player = new Player(1,10, maze);
     minotaur = new Player(1, 5, maze);
-    player.gavel();
+    // player.gavel();
 
   });
 
