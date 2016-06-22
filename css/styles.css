@@ -8,11 +8,11 @@
 table {
   border: 2px solid black;
   height: 500px;
-  width: 1000px;
+  width: 500px;
   background: none;
   margin: 0 auto;
   display: none;
-  background-image: url(../policelights.gif);
+  background-image: url(../img/policelights.gif);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -33,8 +33,8 @@ td {
   border-right: 2px solid white;
 }
  .mazeSpace {
-   height: 100px;
-   width: 100px;
+   height: 50px;
+   width: 50px;
  }
 
 .startPoint {
@@ -42,7 +42,14 @@ td {
 }
 
 .playerSpace {
-  background-image: url(../playerIcon.gif);
+  background-image: url(../img/playerIcon.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.gavelSpace {
+  background-image: url(../img/gavel.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -88,7 +95,7 @@ td {
 }
 
 .northWall {
-  border-top: 2px solid black;
+  border-top: 2px solid white;
 }
 
 #east, #west {
