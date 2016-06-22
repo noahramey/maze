@@ -225,7 +225,6 @@ Player.prototype.minotaurWest = function(x, y) {
 }
 
 
-
 Player.prototype.win = function(){
   if (player.x === player.maze.endX && player.y === player.maze.endY) {
     $(".maze table").hide();
