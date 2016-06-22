@@ -49,14 +49,6 @@ Maze.prototype.setEnd = function(x, y) {
   this.endY = y;
 }
 
-Maze.prototype.isInside = function(x, y) {
-  if (x>0 && x<=this.width && y>0 && y<=this.height) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
 Maze.prototype.createWall = function (x, y, direction) {
   this.spaces[x][y].setWallDirection(direction);
   return true;
@@ -116,17 +108,11 @@ Player.prototype.moveNorth = function(x, y) {
     this.maze.spaces[x][y].playerSpace = false;
     this.x = x;
     this.y = y+1;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
-  // console.log(this.x, this.y);
   this.maze.spaces[x][y+1].playerSpace = true;
   }
   this.win();
   maze.render();
   // player.gavel();
-  minoCrunch();
 }
 
 Player.prototype.moveEast = function(x, y) {
@@ -134,17 +120,11 @@ Player.prototype.moveEast = function(x, y) {
     this.maze.spaces[x][y].playerSpace = false;
     this.x = x+1;
     this.y = y;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
-  // console.log(this.x, this.y);
   this.maze.spaces[x+1][y].playerSpace = true;
   }
   this.win();
   maze.render();
   // player.gavel();
-  minoCrunch();
 
 }
 
@@ -153,17 +133,11 @@ Player.prototype.moveSouth = function(x, y) {
     this.maze.spaces[x][y].playerSpace = false;
     this.x = x;
     this.y = y-1;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
-  // console.log(this.x, this.y);
   this.maze.spaces[x][y-1].playerSpace = true;
   }
   this.win();
   maze.render();
   // player.gavel();
-  minoCrunch();
 
 }
 
@@ -172,17 +146,11 @@ Player.prototype.moveWest = function(x, y) {
     this.maze.spaces[x][y].playerSpace = false;
     this.x = x-1;
     this.y = y;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
-  // console.log(this.x, this.y);
   this.maze.spaces[x-1][y].playerSpace = true;
   }
   this.win();
   maze.render();
   // player.gavel();
-  minoCrunch();
 
 }
 
@@ -209,10 +177,6 @@ Player.prototype.minotaurNorth = function(x, y) {
     this.maze.spaces[x][y].minotaurSpace = false;
     this.x = x;
     this.y = y+1;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
   this.maze.spaces[x][y+1].minotaurSpace = true;
   }
   this.win();
@@ -226,10 +190,6 @@ Player.prototype.minotaurEast = function(x, y) {
     this.maze.spaces[x][y].minotaurSpace = false;
     this.x = x+1;
     this.y = y;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
   this.maze.spaces[x+1][y].minotaurSpace = true;
   }
   this.win();
@@ -243,10 +203,6 @@ Player.prototype.minotaurSouth = function(x, y) {
     this.maze.spaces[x][y].minotaurSpace = false;
     this.x = x;
     this.y = y-1;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
   this.maze.spaces[x][y-1].minotaurSpace = true;
   }
   this.win();
@@ -260,10 +216,6 @@ Player.prototype.minotaurWest = function(x, y) {
     this.maze.spaces[x][y].minotaurSpace = false;
     this.x = x-1;
     this.y = y;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
   this.maze.spaces[x-1][y].minotaurSpace = true;
   }
   this.win();
@@ -319,6 +271,18 @@ $(document).ready(function() {
   for (var i = 0; i < xVertWallsArray.length; i++) {
     maze.createWall(xVertWallsArray[i]+1, yVertWallsArray[i], "west");
   }
+  for (var i = 1; i <= 5; i++) {
+    maze.createWall(1, i, "west");
+  }
+  for (var i = 1; i <= 5; i++) {
+    maze.createWall(i, 5, "north");
+  }
+  for (var i = 1; i <= 5; i++) {
+    maze.createWall(5, i, "east");
+  }
+  for (var i = 1; i <= 5; i++) {
+    maze.createWall(i, 1, "south");
+  }
 
   maze.spaces[1][1].playerSpace = true;
 
@@ -353,6 +317,18 @@ $(document).ready(function() {
     }
     for (var i = 0; i < xHorizWallsArray.length; i++) {
       maze.createWall(xHorizWallsArray[i], yHorizWallsArray[i]+1, "south");
+    }
+    for (var i = 1; i <= 10; i++) {
+      maze.createWall(1, i, "west");
+    }
+    for (var i = 1; i <= 10; i++) {
+      maze.createWall(i, 10, "north");
+    }
+    for (var i = 1; i <= 10; i++) {
+      maze.createWall(10, i, "east");
+    }
+    for (var i = 1; i <= 10; i++) {
+      maze.createWall(i, 1, "south");
     }
     maze.spaces[1][10].playerSpace = true;
 
