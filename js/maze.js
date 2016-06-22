@@ -222,9 +222,9 @@ Player.prototype.win = function(){
   }
 }
 
-// Maze.prototype.gavel = function(x, y) {
-//   maze.spaces[x][y].gavelSpace = true;
-// }
+Maze.prototype.gavel = function(x, y) {
+  maze.spaces[x][y].gavelSpace = true;
+}
 
 Player.prototype.gavel = function(x, y) {
   if (this.x === x && this.y === y && $('td.gavelToggle').hasClass("gavelSpace")) {
