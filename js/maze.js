@@ -29,6 +29,7 @@ function MazeSpace() {
   this.playerSpace = false;
   this.minotaurSpace = false;
   this.gavelSpace = false;
+  this.endSpace = false;
 }
 
 function Player(x,y,m) {
@@ -47,6 +48,7 @@ Maze.prototype.setStart = function(x, y, orientation) {
 Maze.prototype.setEnd = function(x, y) {
   this.endX = x;
   this.endY = y;
+  this.spaces[x][y].endSpace = true;
 }
 
 Maze.prototype.createWall = function (x, y, direction) {
@@ -80,6 +82,9 @@ Maze.prototype.render = function() {
       if (maze.spaces[x][y]["minotaurSpace"] === true) {
         $mazeSpace.addClass("minotaurSpace");
       }
+      if(maze.spaces[x][y]["endSpace"] === true) {
+        $mazeSpace.addClass("endSpace");
+      }
       // if (maze.spaces[x][y]["gavelSpace"] === true) {
       //   $mazeSpace.toggleClass("gavelSpace");
       // }
@@ -90,17 +95,6 @@ Maze.prototype.render = function() {
 // MazeSpace.prototype.renderSpace = function (x, y) {
 //   this.playerSpace = true;
 // };
-
-/*************************************
-To refactor for movement functions later:
-**************************************/
-// function boundaryCheck(oldx, oldy, newx, newy)
-//   if (this.maze.isInside(this.x, this.y) === false) {
-//     this.x = x;
-//     this.y = y;
-//     newx = oldx;
-//     newy = oldy;
-// }
 
 
 Player.prototype.moveNorth = function(x, y) {
@@ -304,13 +298,14 @@ $(document).ready(function() {
     $("table").show();
   });
 
+
   $("#level2").click(function() {
     $(".container").css('background-image', 'none')
     $(".maze table").show();
     $(".winning-image").hide();
     maze = new Maze(10,10);
     maze.setStart(1,10, "south");
-    maze.setEnd(10,1);
+    maze.setEnd(10,4);
     var xVertWallsArray = [1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,4,4,5,5,5,5,5,5,6,6,6,7,7,7,7,7,8,8,8,8,9,9,9,9,9,9,9];
     var yVertWallsArray = [2,4,5,8,3,4,5,8,9,10,2,5,6,7,8,9,1,4,2,5,7,8,9,10,1,4,6,2,3,7,9,10,1,5,7,8,2,3,4,6,7,8,9];
     var xHorizWallsArray = [1,1,1,2,2,2,2,3,3,3,4,4,4,4,4,5,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,8,9,9,9,9,10];
@@ -332,11 +327,17 @@ $(document).ready(function() {
     minotaur = new Player(1, 5, maze);
     juggernaut = new Player(8, 8, maze);
     // player.gavel();
-
   });
 
+  /***********************************
+  Level 3
+  ************************************/
 
-  // console.log(player.x, player.y);
+    // var xVertWallsArray = [1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,7,7,7,7,7,7,7,7,7,8,8,8,8,8,9,9,9,9,9,9,9];
+    // var yVertWallsArray = [2,3,4,5,6,7,8,9,1,2,3,4,8,9,10,2,3,4,5,7,8,9,1,2,4,6,7,8,9,10,1,2,3,5,6,7,8,9,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10,1,3,4,6,7,9];
+    // var xHorizWallsArray = [1,2,3,3,4,5,5,8,8,9,9,9,10];
+    // var yHorizWallsArray = [3,6,5,7,5,3,4,4,8,5,7,9,8];
+
 
   function userControls(button) {
     $(button).mousedown(function(){$(this).toggleClass('btn-press')}); $(button).mouseup(function(){$(this).toggleClass('btn-press')});
@@ -353,7 +354,6 @@ $(document).ready(function() {
 
   $('#west').click(function(){player.moveWest(player.x, player.y)});
   userControls('#west');
-
 
   $(document).keydown(function(e){
     switch(e.which) {
@@ -372,6 +372,4 @@ $(document).ready(function() {
         break;
     }
   });
-
-  // console.log(player.x, player.y);
 });
