@@ -32,7 +32,6 @@ function MazeSpace() {
 function Player(x,y,m) {
   this.x = x;
   this.y = y;
-  // this.orientation = null;
   this.maze = m;
 }
 
@@ -113,7 +112,7 @@ Player.prototype.moveNorth = function(x, y) {
       this.x = x;
       this.y = y;
     }
-  console.log(this.x, this.y);
+  // console.log(this.x, this.y);
   this.maze.spaces[x][y+1].playerSpace = true;
   }
   this.win();
@@ -129,7 +128,7 @@ Player.prototype.moveEast = function(x, y) {
       this.x = x;
       this.y = y;
     }
-  console.log(this.x, this.y);
+  // console.log(this.x, this.y);
   this.maze.spaces[x+1][y].playerSpace = true;
   }
   this.win();
@@ -145,7 +144,7 @@ Player.prototype.moveSouth = function(x, y) {
       this.x = x;
       this.y = y;
     }
-  console.log(this.x, this.y);
+  // console.log(this.x, this.y);
   this.maze.spaces[x][y-1].playerSpace = true;
   }
   this.win();
@@ -161,7 +160,7 @@ Player.prototype.moveWest = function(x, y) {
       this.x = x;
       this.y = y;
     }
-  console.log(this.x, this.y);
+  // console.log(this.x, this.y);
   this.maze.spaces[x-1][y].playerSpace = true;
   }
   this.win();
@@ -174,6 +173,7 @@ Player.prototype.win = function(){
     $(".winning-image").fadeIn();
   }
 }
+
 // USER INTERFACE LOGIC //
 
 $(document).ready(function() {
@@ -195,7 +195,6 @@ $(document).ready(function() {
 
   maze.render();
   player = new Player(1,1, maze);
-
 
   $("#start").click(function() {
     $("#intro").hide();
@@ -232,9 +231,6 @@ $(document).ready(function() {
 
   });
 
-
-  // console.log(player.x, player.y);
-
   $('#north').click(function(){player.moveNorth(player.x, player.y)});
   $('#north').mousedown(function(){$(this).toggleClass('btn-press')}); $('#north').mouseup(function(){$(this).toggleClass('btn-press')});
   $('#east').click(function(){player.moveEast(player.x, player.y)});
@@ -254,7 +250,6 @@ $(document).ready(function() {
         break;
       case 38: //up arrow
         player.moveNorth(player.x, player.y);
-        // $('#north').toggleClass('btn-press');
         break;
       case 39: //right arrow
         player.moveEast(player.x, player.y);
@@ -264,6 +259,4 @@ $(document).ready(function() {
         break;
     }
   });
-
-  // console.log(player.x, player.y);
 });
