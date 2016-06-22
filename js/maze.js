@@ -229,7 +229,6 @@ $(document).ready(function() {
 
     maze.render();
     player = new Player(1,10, maze);
-
   });
 
 
