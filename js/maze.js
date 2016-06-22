@@ -225,7 +225,6 @@ Player.prototype.minotaurWest = function(x, y) {
 }
 
 
-
 Player.prototype.win = function(){
   if (player.x === player.maze.endX && player.y === player.maze.endY) {
     $(".maze table").hide();
@@ -245,7 +244,7 @@ Player.prototype.gavel = function() {
 }
 
 function minoCrunch() {
-  if(player.x === minotaur.x && player.y === minotaur.y) {
+  if(player.x === minotaur.x && player.y === minotaur.y || player.x === juggernaut.x && player.y === juggernaut.y) {
     alert("You're going to the slammer");
     maze.spaces[player.x][player.y].playerSpace = false;
     maze.spaces[1][10].playerSpace = true;
@@ -254,7 +253,32 @@ function minoCrunch() {
   }
 }
 
-
+function mazeWalls(xVertWallsArray, yVertWallsArray, xHorizWallsArray, yHorizWallsArray, mazeSize){
+  for (var i = 0; i < xVertWallsArray.length; i++) {
+    maze.createWall(xVertWallsArray[i], yVertWallsArray[i], "east");
+  }
+  for (var i = 0; i < xVertWallsArray.length; i++) {
+    maze.createWall(xVertWallsArray[i]+1, yVertWallsArray[i], "west");
+  }
+  for (var i = 0; i < xHorizWallsArray.length; i++) {
+    maze.createWall(xHorizWallsArray[i], yHorizWallsArray[i], "north");
+  }
+  for (var i = 0; i < xHorizWallsArray.length; i++) {
+    maze.createWall(xHorizWallsArray[i], yHorizWallsArray[i]+1, "south");
+  }
+  for (var i = 1; i <= mazeSize; i++) {
+    maze.createWall(1, i, "west");
+  }
+  for (var i = 1; i <= mazeSize; i++) {
+    maze.createWall(i, mazeSize, "north");
+  }
+  for (var i = 1; i <= mazeSize; i++) {
+    maze.createWall(mazeSize, i, "east");
+  }
+  for (var i = 1; i <= mazeSize; i++) {
+    maze.createWall(i, 1, "south");
+  }
+}
 
 // USER INTERFACE LOGIC //
 
@@ -265,25 +289,9 @@ $(document).ready(function() {
 
   var xVertWallsArray = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4];
   var yVertWallsArray = [1,2,3,4,5,4,3,2,1,2,3,4,5,4,3,2];
-
-  for (var i = 0; i < xVertWallsArray.length; i++) {
-    maze.createWall(xVertWallsArray[i], yVertWallsArray[i], "east");
-  }
-  for (var i = 0; i < xVertWallsArray.length; i++) {
-    maze.createWall(xVertWallsArray[i]+1, yVertWallsArray[i], "west");
-  }
-  for (var i = 1; i <= 5; i++) {
-    maze.createWall(1, i, "west");
-  }
-  for (var i = 1; i <= 5; i++) {
-    maze.createWall(i, 5, "north");
-  }
-  for (var i = 1; i <= 5; i++) {
-    maze.createWall(5, i, "east");
-  }
-  for (var i = 1; i <= 5; i++) {
-    maze.createWall(i, 1, "south");
-  }
+  var xHorizWallsArray = [];
+  var yHorizWallsArray = [];
+  mazeWalls(xVertWallsArray, yVertWallsArray, xHorizWallsArray, yHorizWallsArray, 5);
 
   maze.spaces[1][1].playerSpace = true;
 
@@ -307,31 +315,8 @@ $(document).ready(function() {
     var yVertWallsArray = [2,4,5,8,3,4,5,8,9,10,2,5,6,7,8,9,1,4,2,5,7,8,9,10,1,4,6,2,3,7,9,10,1,5,7,8,2,3,4,6,7,8,9];
     var xHorizWallsArray = [1,1,1,2,2,2,2,3,3,3,4,4,4,4,4,5,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,8,9,9,9,9,10];
     var yHorizWallsArray = [2,6,9,1,5,6,7,1,3,6,2,3,5,7,9,2,3,5,6,8,3,5,7,8,2,3,5,9,2,4,5,6,8,2,3,6,9,4];
-    console.log(xHorizWallsArray.length, yHorizWallsArray.length);
-    for (var i = 0; i < xVertWallsArray.length; i++) {
-      maze.createWall(xVertWallsArray[i], yVertWallsArray[i], "east");
-    }
-    for (var i = 0; i < xVertWallsArray.length; i++) {
-      maze.createWall(xVertWallsArray[i]+1, yVertWallsArray[i], "west");
-    }
-    for (var i = 0; i < xHorizWallsArray.length; i++) {
-      maze.createWall(xHorizWallsArray[i], yHorizWallsArray[i], "north");
-    }
-    for (var i = 0; i < xHorizWallsArray.length; i++) {
-      maze.createWall(xHorizWallsArray[i], yHorizWallsArray[i]+1, "south");
-    }
-    for (var i = 1; i <= 10; i++) {
-      maze.createWall(1, i, "west");
-    }
-    for (var i = 1; i <= 10; i++) {
-      maze.createWall(i, 10, "north");
-    }
-    for (var i = 1; i <= 10; i++) {
-      maze.createWall(10, i, "east");
-    }
-    for (var i = 1; i <= 10; i++) {
-      maze.createWall(i, 1, "south");
-    }
+    mazeWalls(xVertWallsArray, yVertWallsArray, xHorizWallsArray, yHorizWallsArray, 10);
+
     maze.spaces[1][10].playerSpace = true;
 
     // maze.gavel(2, 10);
@@ -339,11 +324,13 @@ $(document).ready(function() {
 
     function minoTimer() {
       minotaur.moveMinotaur();
+      juggernaut.moveMinotaur();
     };
 
     var myMinoMove = setInterval(minoTimer, 200);
     player = new Player(1,10, maze);
     minotaur = new Player(1, 5, maze);
+    juggernaut = new Player(8, 8, maze);
     // player.gavel();
 
   });
