@@ -88,9 +88,9 @@ Maze.prototype.render = function() {
       }
       if (maze.spaces[x][y]["minotaurSpace"] === true) {
         $mazeSpace.addClass("minotaurSpace");
-
+      }
       if (maze.spaces[x][y]["gavelSpace"] === true) {
-        $mazeSpace.addClass("gavelSpace");
+        $mazeSpace.toggleClass("gavelSpace");
       }
     }
   }
@@ -184,16 +184,16 @@ Player.prototype.moveWest = function(x, y) {
 Player.prototype.moveMinotaur = function () {
   var i = Math.floor(Math.random() * 4);
   if (i === 0) {
-    this.moveEast(this.x, this.y);
+    this.minotaurEast(this.x, this.y);
   }
   else if (i === 1) {
-    this.moveNorth(this.x, this.y);
+    this.minotaurNorth(this.x, this.y);
   }
   else if (i === 2) {
-    this.moveWest(this.x, this.y);
+    this.minotaurWest(this.x, this.y);
   }
   else if (i === 3) {
-    this.moveSouth(this.x, this.y);
+    this.minotaurSouth(this.x, this.y);
   }
   console.log(this.x, this.y);
 };
@@ -267,10 +267,11 @@ Player.prototype.win = function(){
   }
 }
 
+Maze.prototype.gavel = function(x, y) {
+  maze.spaces[x][y].gavelSpace = true;
+}
+
 Player.prototype.gavel = function() {
-  function gavelDisplay() {
-    $mazeSpace.toggleClass("gavel");
-  }
   if (this.x === 2 && this.y === 10) {
     alert("you dead");
   }
@@ -300,19 +301,11 @@ $(document).ready(function() {
   maze.render();
   player = new Player(1,1, maze);
 
-  minotaur = new Player(1, 5, maze);
 
   $("#start").click(function() {
     $("#intro").hide();
     $("table").show();
-    function minoTimer() {
-      minotaur.moveMinotaur();
-    };
-
-    var myMinoMove = setInterval(minoTimer, 200);
   });
-
-
 
   $("#level2").click(function() {
     $(".maze table").show();
@@ -339,8 +332,16 @@ $(document).ready(function() {
     }
     maze.spaces[1][10].playerSpace = true;
 
+    maze.gavel(2, 10);
     maze.render();
+
+    function minoTimer() {
+      minotaur.moveMinotaur();
+    };
+
+    var myMinoMove = setInterval(minoTimer, 200);
     player = new Player(1,10, maze);
+    minotaur = new Player(1, 5, maze);
     player.gavel();
 
   });
