@@ -91,17 +91,6 @@ Maze.prototype.render = function() {
 //   this.playerSpace = true;
 // };
 
-/*************************************
-To refactor for movement functions later:
-**************************************/
-// function boundaryCheck(oldx, oldy, newx, newy)
-//   if (this.maze.isInside(this.x, this.y) === false) {
-//     this.x = x;
-//     this.y = y;
-//     newx = oldx;
-//     newy = oldy;
-// }
-
 
 Player.prototype.moveNorth = function(x, y) {
   if (this.maze.spaces[x][y].north === false) {
