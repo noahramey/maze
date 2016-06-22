@@ -59,6 +59,13 @@ A maze with with a character you can move through to the end.
 * add damn images into folder
 
 * AI/Minotaur
+  * Create robot object
+
+  * set robot object in maze
+
+  * Make robot move
+
+  * For each move of the player, robot moves once
 
 * Random generation
 

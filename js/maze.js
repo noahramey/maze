@@ -27,6 +27,7 @@ function MazeSpace() {
   this.south = false;
   this.west = false;
   this.playerSpace = false;
+  this.minotaurSpace = false;
 }
 
 function Player(x,y,m) {
@@ -84,6 +85,9 @@ Maze.prototype.render = function() {
       if (maze.spaces[x][y]["playerSpace"] === true) {
         $mazeSpace.addClass("playerSpace");
       }
+      if (maze.spaces[x][y]["minotaurSpace"] === true) {
+        $mazeSpace.addClass("minotaurSpace");
+      }
     }
   }
 }
@@ -113,7 +117,7 @@ Player.prototype.moveNorth = function(x, y) {
       this.x = x;
       this.y = y;
     }
-  console.log(this.x, this.y);
+  // console.log(this.x, this.y);
   this.maze.spaces[x][y+1].playerSpace = true;
   }
   this.win();
@@ -129,7 +133,7 @@ Player.prototype.moveEast = function(x, y) {
       this.x = x;
       this.y = y;
     }
-  console.log(this.x, this.y);
+  // console.log(this.x, this.y);
   this.maze.spaces[x+1][y].playerSpace = true;
   }
   this.win();
@@ -145,7 +149,7 @@ Player.prototype.moveSouth = function(x, y) {
       this.x = x;
       this.y = y;
     }
-  console.log(this.x, this.y);
+  // console.log(this.x, this.y);
   this.maze.spaces[x][y-1].playerSpace = true;
   }
   this.win();
@@ -161,12 +165,92 @@ Player.prototype.moveWest = function(x, y) {
       this.x = x;
       this.y = y;
     }
-  console.log(this.x, this.y);
+  // console.log(this.x, this.y);
   this.maze.spaces[x-1][y].playerSpace = true;
   }
   this.win();
   maze.render();
 }
+
+
+Player.prototype.moveMinotaur = function () {
+  var i = Math.floor(Math.random() * 4);
+  if (i === 0) {
+    this.moveEast(this.x, this.y);
+  }
+  else if (i === 1) {
+    this.moveNorth(this.x, this.y);
+  }
+  else if (i === 2) {
+    this.moveWest(this.x, this.y);
+  }
+  else if (i === 3) {
+    this.moveSouth(this.x, this.y);
+  }
+  console.log(this.x, this.y);
+};
+
+Player.prototype.minotaurNorth = function(x, y) {
+  if (this.maze.spaces[x][y].north === false) {
+    this.maze.spaces[x][y].minotaurSpace = false;
+    this.x = x;
+    this.y = y+1;
+    if (this.maze.isInside(this.x, this.y) === false) {
+      this.x = x;
+      this.y = y;
+    }
+  this.maze.spaces[x][y+1].minotaurSpace = true;
+  }
+  this.win();
+  maze.render();
+}
+
+Player.prototype.minotaurEast = function(x, y) {
+  if (this.maze.spaces[x][y].east === false) {
+    this.maze.spaces[x][y].minotaurSpace = false;
+    this.x = x+1;
+    this.y = y;
+    if (this.maze.isInside(this.x, this.y) === false) {
+      this.x = x;
+      this.y = y;
+    }
+  this.maze.spaces[x+1][y].minotaurSpace = true;
+  }
+  this.win();
+  maze.render();
+}
+
+Player.prototype.minotaurSouth = function(x, y) {
+  if (this.maze.spaces[x][y].south === false) {
+    this.maze.spaces[x][y].minotaurSpace = false;
+    this.x = x;
+    this.y = y-1;
+    if (this.maze.isInside(this.x, this.y) === false) {
+      this.x = x;
+      this.y = y;
+    }
+  this.maze.spaces[x][y-1].minotaurSpace = true;
+  }
+  this.win();
+  maze.render();
+}
+
+Player.prototype.minotaurWest = function(x, y) {
+  if (this.maze.spaces[x][y].west === false) {
+    this.maze.spaces[x][y].minotaurSpace = false;
+    this.x = x-1;
+    this.y = y;
+    if (this.maze.isInside(this.x, this.y) === false) {
+      this.x = x;
+      this.y = y;
+    }
+  this.maze.spaces[x-1][y].minotaurSpace = true;
+  }
+  this.win();
+  maze.render();
+}
+
+
 
 Player.prototype.win = function(){
   if (player.x === player.maze.endX && player.y === player.maze.endY) {
@@ -196,11 +280,19 @@ $(document).ready(function() {
   maze.render();
   player = new Player(1,1, maze);
 
+  minotaur = new Player(1, 5, maze);
 
   $("#start").click(function() {
     $("#intro").hide();
     $("table").show();
+    function minoTimer() {
+      minotaur.moveMinotaur();
+    };
+
+    var myMinoMove = setInterval(minoTimer, 200);
   });
+
+
 
   $("#level2").click(function() {
     $(".maze table").show();
@@ -235,17 +327,22 @@ $(document).ready(function() {
 
   // console.log(player.x, player.y);
 
+  function userControls(button) {
+    $(button).mousedown(function(){$(this).toggleClass('btn-press')}); $(button).mouseup(function(){$(this).toggleClass('btn-press')});
+  }
+
   $('#north').click(function(){player.moveNorth(player.x, player.y)});
-  $('#north').mousedown(function(){$(this).toggleClass('btn-press')}); $('#north').mouseup(function(){$(this).toggleClass('btn-press')});
+  userControls('#north');
+
   $('#east').click(function(){player.moveEast(player.x, player.y)});
-  $('#east').mousedown(function(){$(this).toggleClass('btn-press')});
-  $('#east').mouseup(function(){$(this).toggleClass('btn-press')});
+  userControls('#east');
+
   $('#south').click(function(){player.moveSouth(player.x, player.y)});
-  $('#south').mousedown(function(){$(this).toggleClass('btn-press')});
-  $('#south').mouseup(function(){$(this).toggleClass('btn-press')});
+  userControls('#south');
+
   $('#west').click(function(){player.moveWest(player.x, player.y)});
-  $('#west').mousedown(function(){$(this).toggleClass('btn-press')});
-  $('#west').mouseup(function(){$(this).toggleClass('btn-press')});
+  userControls('#west');
+
 
   $(document).keydown(function(e){
     switch(e.which) {
