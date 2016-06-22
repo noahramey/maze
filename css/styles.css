@@ -48,6 +48,13 @@ td {
   background-position: center;
 }
 
+.gavelSpace {
+  background-image: url(../img/gavel.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 .winning-image {
   display: none;
   /*width: 500px;

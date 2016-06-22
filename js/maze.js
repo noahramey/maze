@@ -27,6 +27,7 @@ function MazeSpace() {
   this.south = false;
   this.west = false;
   this.playerSpace = false;
+  this.gavelSpace = false;
 }
 
 function Player(x,y,m) {
@@ -84,13 +85,16 @@ Maze.prototype.render = function() {
       if (maze.spaces[x][y]["playerSpace"] === true) {
         $mazeSpace.addClass("playerSpace");
       }
+      if (maze.spaces[x][y]["gavelSpace"] === true) {
+        $mazeSpace.addClass("gavelSpace");
+      }
     }
   }
 }
 
-MazeSpace.prototype.renderSpace = function (x, y) {
-  this.playerSpace = true;
-};
+// MazeSpace.prototype.renderSpace = function (x, y) {
+//   this.playerSpace = true;
+// };
 
 /*************************************
 To refactor for movement functions later:
@@ -118,6 +122,7 @@ Player.prototype.moveNorth = function(x, y) {
   }
   this.win();
   maze.render();
+  player.gavel();
 }
 
 Player.prototype.moveEast = function(x, y) {
@@ -134,6 +139,7 @@ Player.prototype.moveEast = function(x, y) {
   }
   this.win();
   maze.render();
+  player.gavel();
 }
 
 Player.prototype.moveSouth = function(x, y) {
@@ -150,6 +156,7 @@ Player.prototype.moveSouth = function(x, y) {
   }
   this.win();
   maze.render();
+  player.gavel();
 }
 
 Player.prototype.moveWest = function(x, y) {
@@ -166,6 +173,7 @@ Player.prototype.moveWest = function(x, y) {
   }
   this.win();
   maze.render();
+  player.gavel();
 }
 
 Player.prototype.win = function(){
@@ -174,6 +182,18 @@ Player.prototype.win = function(){
     $(".winning-image").fadeIn();
   }
 }
+
+Player.prototype.gavel = function() {
+  function gavelDisplay() {
+    $mazeSpace.toggleClass("gavel");
+  }
+  if (this.x === 2 && this.y === 10) {
+    alert("you dead");
+  }
+}
+
+
+
 // USER INTERFACE LOGIC //
 
 $(document).ready(function() {
@@ -229,6 +249,8 @@ $(document).ready(function() {
 
     maze.render();
     player = new Player(1,10, maze);
+    player.gavel();
+
   });
 
 
