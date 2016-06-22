@@ -259,7 +259,6 @@ function mazeWalls(xVertWallsArray, yVertWallsArray, xHorizWallsArray, yHorizWal
   for (var i = 0; i < xVertWallsArray.length; i++) {
     maze.createWall(xVertWallsArray[i]+1, yVertWallsArray[i], "west");
   }
-  debugger
   for (var i = 0; i < xHorizWallsArray.length; i++) {
     maze.createWall(xHorizWallsArray[i], yHorizWallsArray[i], "north");
   }
