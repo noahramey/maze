@@ -34,7 +34,6 @@ function MazeSpace() {
 function Player(x,y,m) {
   this.x = x;
   this.y = y;
-  // this.orientation = null;
   this.maze = m;
 }
 
@@ -48,14 +47,6 @@ Maze.prototype.setStart = function(x, y, orientation) {
 Maze.prototype.setEnd = function(x, y) {
   this.endX = x;
   this.endY = y;
-}
-
-Maze.prototype.isInside = function(x, y) {
-  if (x>0 && x<=this.width && y>0 && y<=this.height) {
-    return true;
-  } else {
-    return false;
-  }
 }
 
 Maze.prototype.createWall = function (x, y, direction) {
@@ -89,9 +80,9 @@ Maze.prototype.render = function() {
       if (maze.spaces[x][y]["minotaurSpace"] === true) {
         $mazeSpace.addClass("minotaurSpace");
       }
-      if (maze.spaces[x][y]["gavelSpace"] === true) {
-        $mazeSpace.toggleClass("gavelSpace");
-      }
+      // if (maze.spaces[x][y]["gavelSpace"] === true) {
+      //   $mazeSpace.toggleClass("gavelSpace");
+      // }
     }
   }
 }
@@ -117,16 +108,11 @@ Player.prototype.moveNorth = function(x, y) {
     this.maze.spaces[x][y].playerSpace = false;
     this.x = x;
     this.y = y+1;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
-  // console.log(this.x, this.y);
   this.maze.spaces[x][y+1].playerSpace = true;
   }
   this.win();
   maze.render();
-  player.gavel();
+  // player.gavel();
 }
 
 Player.prototype.moveEast = function(x, y) {
@@ -134,16 +120,12 @@ Player.prototype.moveEast = function(x, y) {
     this.maze.spaces[x][y].playerSpace = false;
     this.x = x+1;
     this.y = y;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
-  // console.log(this.x, this.y);
   this.maze.spaces[x+1][y].playerSpace = true;
   }
   this.win();
   maze.render();
-  player.gavel();
+  // player.gavel();
+
 }
 
 Player.prototype.moveSouth = function(x, y) {
@@ -151,16 +133,12 @@ Player.prototype.moveSouth = function(x, y) {
     this.maze.spaces[x][y].playerSpace = false;
     this.x = x;
     this.y = y-1;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
-  // console.log(this.x, this.y);
   this.maze.spaces[x][y-1].playerSpace = true;
   }
   this.win();
   maze.render();
-  player.gavel();
+  // player.gavel();
+
 }
 
 Player.prototype.moveWest = function(x, y) {
@@ -168,16 +146,12 @@ Player.prototype.moveWest = function(x, y) {
     this.maze.spaces[x][y].playerSpace = false;
     this.x = x-1;
     this.y = y;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
-  // console.log(this.x, this.y);
   this.maze.spaces[x-1][y].playerSpace = true;
   }
   this.win();
   maze.render();
-  player.gavel();
+  // player.gavel();
+
 }
 
 
@@ -203,14 +177,12 @@ Player.prototype.minotaurNorth = function(x, y) {
     this.maze.spaces[x][y].minotaurSpace = false;
     this.x = x;
     this.y = y+1;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
   this.maze.spaces[x][y+1].minotaurSpace = true;
   }
   this.win();
   maze.render();
+  minoCrunch();
+
 }
 
 Player.prototype.minotaurEast = function(x, y) {
@@ -218,14 +190,12 @@ Player.prototype.minotaurEast = function(x, y) {
     this.maze.spaces[x][y].minotaurSpace = false;
     this.x = x+1;
     this.y = y;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
   this.maze.spaces[x+1][y].minotaurSpace = true;
   }
   this.win();
   maze.render();
+  minoCrunch();
+
 }
 
 Player.prototype.minotaurSouth = function(x, y) {
@@ -233,14 +203,12 @@ Player.prototype.minotaurSouth = function(x, y) {
     this.maze.spaces[x][y].minotaurSpace = false;
     this.x = x;
     this.y = y-1;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
   this.maze.spaces[x][y-1].minotaurSpace = true;
   }
   this.win();
   maze.render();
+  minoCrunch();
+
 }
 
 Player.prototype.minotaurWest = function(x, y) {
@@ -248,14 +216,12 @@ Player.prototype.minotaurWest = function(x, y) {
     this.maze.spaces[x][y].minotaurSpace = false;
     this.x = x-1;
     this.y = y;
-    if (this.maze.isInside(this.x, this.y) === false) {
-      this.x = x;
-      this.y = y;
-    }
   this.maze.spaces[x-1][y].minotaurSpace = true;
   }
   this.win();
   maze.render();
+  minoCrunch();
+
 }
 
 
@@ -267,13 +233,23 @@ Player.prototype.win = function(){
   }
 }
 
-Maze.prototype.gavel = function(x, y) {
-  maze.spaces[x][y].gavelSpace = true;
-}
+// Maze.prototype.gavel = function(x, y) {
+//   maze.spaces[x][y].gavelSpace = true;
+// }
 
 Player.prototype.gavel = function() {
   if (this.x === 2 && this.y === 10) {
     alert("you dead");
+  }
+}
+
+function minoCrunch() {
+  if(player.x === minotaur.x && player.y === minotaur.y) {
+    alert("You're going to the slammer");
+    maze.spaces[player.x][player.y].playerSpace = false;
+    maze.spaces[1][10].playerSpace = true;
+    player.x = 1;
+    player.y = 10;
   }
 }
 
@@ -294,6 +270,18 @@ $(document).ready(function() {
   }
   for (var i = 0; i < xVertWallsArray.length; i++) {
     maze.createWall(xVertWallsArray[i]+1, yVertWallsArray[i], "west");
+  }
+  for (var i = 1; i <= 5; i++) {
+    maze.createWall(1, i, "west");
+  }
+  for (var i = 1; i <= 5; i++) {
+    maze.createWall(i, 5, "north");
+  }
+  for (var i = 1; i <= 5; i++) {
+    maze.createWall(5, i, "east");
+  }
+  for (var i = 1; i <= 5; i++) {
+    maze.createWall(i, 1, "south");
   }
 
   maze.spaces[1][1].playerSpace = true;
@@ -330,9 +318,21 @@ $(document).ready(function() {
     for (var i = 0; i < xHorizWallsArray.length; i++) {
       maze.createWall(xHorizWallsArray[i], yHorizWallsArray[i]+1, "south");
     }
+    for (var i = 1; i <= 10; i++) {
+      maze.createWall(1, i, "west");
+    }
+    for (var i = 1; i <= 10; i++) {
+      maze.createWall(i, 10, "north");
+    }
+    for (var i = 1; i <= 10; i++) {
+      maze.createWall(10, i, "east");
+    }
+    for (var i = 1; i <= 10; i++) {
+      maze.createWall(i, 1, "south");
+    }
     maze.spaces[1][10].playerSpace = true;
 
-    maze.gavel(2, 10);
+    // maze.gavel(2, 10);
     maze.render();
 
     function minoTimer() {
@@ -342,7 +342,7 @@ $(document).ready(function() {
     var myMinoMove = setInterval(minoTimer, 200);
     player = new Player(1,10, maze);
     minotaur = new Player(1, 5, maze);
-    player.gavel();
+    // player.gavel();
 
   });
 
