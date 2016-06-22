@@ -218,6 +218,7 @@ Player.prototype.win = function(){
   if (player.x === player.maze.endX && player.y === player.maze.endY) {
     $(".maze table").hide();
     $(".winning-image").fadeIn();
+    $(".container").css('background-image', 'url(img/policelights.gif)')
   }
 }
 
@@ -292,7 +293,9 @@ $(document).ready(function() {
     $("table").show();
   });
 
-  $("#next-level").click(function() {
+
+  $("#level2").click(function() {
+    $(".container").css('background-image', 'none')
     $(".maze table").show();
     $(".winning-image").hide();
     maze = new Maze(10,10);
