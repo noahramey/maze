@@ -29,6 +29,7 @@ function MazeSpace() {
   this.playerSpace = false;
   this.minotaurSpace = false;
   this.gavelSpace = false;
+  this.endSpace = false;
 }
 
 function Player(x,y,m) {
@@ -47,6 +48,7 @@ Maze.prototype.setStart = function(x, y, orientation) {
 Maze.prototype.setEnd = function(x, y) {
   this.endX = x;
   this.endY = y;
+  this.spaces[x][y].endSpace = true;
 }
 
 Maze.prototype.createWall = function (x, y, direction) {
@@ -79,6 +81,9 @@ Maze.prototype.render = function() {
       }
       if (maze.spaces[x][y]["minotaurSpace"] === true) {
         $mazeSpace.addClass("minotaurSpace");
+      }
+      if(maze.spaces[x][y]["endSpace"] === true) {
+        $mazeSpace.addClass("endSpace");
       }
       // if (maze.spaces[x][y]["gavelSpace"] === true) {
       //   $mazeSpace.toggleClass("gavelSpace");
@@ -300,7 +305,7 @@ $(document).ready(function() {
     $(".winning-image").hide();
     maze = new Maze(10,10);
     maze.setStart(1,10, "south");
-    maze.setEnd(10,1);
+    maze.setEnd(10,4);
     var xVertWallsArray = [1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,4,4,5,5,5,5,5,5,6,6,6,7,7,7,7,7,8,8,8,8,9,9,9,9,9,9,9];
     var yVertWallsArray = [2,4,5,8,3,4,5,8,9,10,2,5,6,7,8,9,1,4,2,5,7,8,9,10,1,4,6,2,3,7,9,10,1,5,7,8,2,3,4,6,7,8,9];
     var xHorizWallsArray = [1,1,1,2,2,2,2,3,3,3,4,4,4,4,4,5,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,8,9,9,9,9,10];

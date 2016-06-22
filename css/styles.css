@@ -73,6 +73,10 @@ td {
   background-position: center;
 }
 
+.endSpace {
+  background: green;
+}
+
 .winning-image {
   display: none;
   /*width: 500px;
