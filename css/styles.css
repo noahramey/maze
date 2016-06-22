@@ -1,6 +1,5 @@
 /*LAYOUT*/
 body {
-  /*background-image: url(../img/policelights.gif);*/
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -12,26 +11,14 @@ body {
 }
 
 table {
-  /* Rectangle 1: */
   background-image: linear-gradient(-180deg, #EAEAEA 0%, #D9D9D9 100%);
   border: 1px solid #979797;
   box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.11);
   border-radius: 8px;
-
-  /*border: 2px solid black;*/
   height: 500px;
   width: 500px;
   margin: 0 auto;
   display: none;
-  /*background-image: url(../img/policelights.gif);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;*/
-}
-
-td {
-  /*border-bottom: 1px solid grey;
-  border-right: 1px solid grey;*/
 }
 
 #intro {
@@ -80,19 +67,17 @@ td {
 }
 
 .keypad {
-  background: lightgrey;
-  height: 70px;
+  /*background: lightgrey;*/
   width: 70px;
   display: block;
   margin: 0 auto;
-  box-shadow:
+  /*box-shadow:
   -webkit-box-shadow:  0px 6px 0px 6px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
   -moz-box-shadow: 0px 6px 0px 6px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
-  box-shadow: 0px 6px 0px 6px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
-  margin-bottom: 20px;
-  border: 1px solid #222;
-  border-top: none;
-  font-size: 24px;
+  box-shadow: 0px 6px 0px 6px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);*/
+  margin-bottom: 10px;
+  /*border: 1px solid #222;*/
+  /*border-top: none;*/
 }
 
 .keypad:focus {
@@ -140,23 +125,22 @@ td {
 }
 
 .instructions p {
+  font-family: 'Oswald', sans-serif;
   text-align: justify;
   padding: 0 10px;
-  font-size: 20px;
+  font-size: 1.5em;
 }
 
 .controls h2, .instructions h2 {
-  font-size: 24px;
+  font-family: 'Oswald', sans-serif;
   color: #E4E4E4;
   /*color: #f9f9f9;*/
   text-align: center;
-  font-family: sans-serif;
   font-size: 2em;
   padding-bottom: 20px;
 }
 
 #start {
-  /* Rectangle 4: */
 background-image: linear-gradient(-180deg, #EAEAEA 0%, #D9D9D9 100%);
 border: 1px solid #979797;
 box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.11);
