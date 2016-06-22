@@ -1,4 +1,7 @@
 /*LAYOUT*/
+body {
+
+}
 .container {
   padding-top: 40px;
   width: 100%;
@@ -6,16 +9,20 @@
 }
 
 table {
-  border: 2px solid black;
+  /* Rectangle 1: */
+  background-image: linear-gradient(-180deg, #EAEAEA 0%, #D9D9D9 100%);
+  border: 1px solid #979797;
+  box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.11);
+  border-radius: 8px;
+  /*border: 2px solid black;*/
   height: 500px;
   width: 500px;
-  background: none;
   margin: 0 auto;
   display: none;
-  background-image: url(../img/policelights.gif);
+  /*background-image: url(../img/policelights.gif);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: center;*/
 }
 
 td {
@@ -104,25 +111,52 @@ td {
   margin-right: 5px;
 }
 
-.controls, .instructions {
-  border: 1px solid black;
-  background: salmon;
+.instructions {
+  background-image: linear-gradient(-180deg, #5F8FC5 0%, #4E729B 100%);
+  border: 1px solid #979797;
+  box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.11);
+  border-radius: 8px;
+  height: 500px;
+  width: 250px;
   text-align: center;
   padding-bottom: 30px;
-  margin: 50px 0;
+  margin: 0 auto;
+}
 
+.controls {
+  background-image: linear-gradient(-180deg, #C55F5F 0%, #9B4E4E 100%);
+  border: 1px solid #979797;
+  box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.11);
+  border-radius: 8px;
+  width: 250px;
+  height: 500px;
+  text-align: center;
+  padding-bottom: 30px;
+  margin: 0 auto;
 }
 
 .instructions p {
-  text-align: left;
+  text-align: justify;
   padding: 0 10px;
   font-size: 20px;
 }
 
 .controls h2, .instructions h2 {
-  color: #f9f9f9;
+  font-size: 24px;
+  color: #E4E4E4;
+  /*color: #f9f9f9;*/
   text-align: center;
   font-family: sans-serif;
   font-size: 2em;
   padding-bottom: 20px;
+}
+
+#start {
+  /* Rectangle 4: */
+background-image: linear-gradient(-180deg, #EAEAEA 0%, #D9D9D9 100%);
+border: 1px solid #979797;
+box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.11);
+border-radius: 8px;
+height: 40px;
+width: 130px;
 }
