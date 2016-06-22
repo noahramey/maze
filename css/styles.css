@@ -12,7 +12,7 @@ table {
   background: none;
   margin: 0 auto;
   display: none;
-  background-image: url(../policelights.gif);
+  background-image: url(../img/policelights.gif);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -42,7 +42,7 @@ td {
 }
 
 .playerSpace {
-  background-image: url(../playerIcon.gif);
+  background-image: url(../img/playerIcon.gif);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
