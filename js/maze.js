@@ -129,7 +129,6 @@ Player.prototype.moveMinotaur = function () {
     player.gavel(5,6);
     minoCrunch();
   }
-  console.log(this.x, this.y);
 };
 
 
@@ -137,7 +136,10 @@ Player.prototype.win = function(){
   if (player.x === player.maze.endX && player.y === player.maze.endY) {
     $(".maze table").hide();
     $(".winning-image").fadeIn();
-    $(".container").css('background-image', 'url(img/policelights.gif)')
+    $(".container").css('background-image', 'url(img/policelights.gif)');
+    $("#start").blur();
+    $("#level2").show();
+    $("#level2").focus();
   }
 }
 
@@ -147,18 +149,18 @@ Maze.prototype.gavel = function(x, y) {
 
 Player.prototype.gavel = function(x, y) {
   if (this.x === x && this.y === y && $('td.gavelToggle').hasClass("gavelSpace")) {
-    $('#message').text("BUSTED!");
-    $("#message").fadeIn(500).delay(0).fadeOut(500)
+    // $('#message').text("BUSTED!");
+    // $("#message").fadeIn(500).delay(0).fadeOut(500)
   }
 }
 
 function minoCrunch() {
-  if(player.x === minotaur.x && player.y === minotaur.y || player.x === juggernaut.x && player.y === juggernaut.y) {
+  if(player.x === minotaur.x && player.y === minotaur.y || player.x === juggernaut.x && player.y === juggernaut.y || maze.spaces[player.x][player.y].gavelSpace === true) {
     alert("You're going to the slammer");
     maze.spaces[player.x][player.y].playerSpace = false;
-    maze.spaces[1][10].playerSpace = true;
-    player.x = 1;
-    player.y = 10;
+    maze.spaces[maze.startX][maze.startY].playerSpace = true;
+    player.x = maze.startX;
+    player.y = maze.startY;
   }
 }
 
@@ -227,7 +229,7 @@ $(document).ready(function() {
     var yHorizWallsArray = [2,6,9,1,5,6,7,1,3,6,2,3,5,7,9,2,3,5,6,8,3,5,7,8,2,3,5,9,2,4,5,6,8,2,3,6,9,4];
     mazeWalls(xVertWallsArray, yVertWallsArray, xHorizWallsArray, yHorizWallsArray, 10);
 
-    maze.spaces[1][10].playerSpace = true;
+    maze.spaces[maze.startX][maze.startY].playerSpace = true;
     maze.gavel(5,6);
     maze.render();
 

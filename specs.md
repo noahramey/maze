@@ -86,6 +86,8 @@ A maze with with a character you can move through to the end.
 
 * Splitting JS files
 
+* Button Focus
+
 * add maze levels
 
 * Refactoring
