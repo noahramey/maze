@@ -54,7 +54,7 @@ table {
 }
 
 .playerSpace {
-  background-image: url(../img/playerIcon.gif);
+  background-image: url(../img/playericon.gif);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -68,7 +68,7 @@ table {
 }
 
 .minotaurSpace {
-  background-image: url(../minotaur.gif);
+  background-image: url(../img/fbi.gif);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -250,10 +250,7 @@ width: 130px;
   z-index: 888;
   font-size: 100px;
   font-weight: bold;
-  background-image: url(../img/policelights.gif);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: red;
   border-top: 20px solid black;
   border-bottom: 20px solid black;
 }
