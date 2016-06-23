@@ -80,16 +80,20 @@ A maze with with a character you can move through to the end.
 
 #### Thursday
 
-* Powerup
+* Button Focus
 
 * Better BUSTED animation
 
 * Splitting JS files
 
-* Button Focus
-
 * add maze levels
 
 * Refactoring
 
-* Level 2 styling
+* Update briefing for level 3
+
+* Change notoriety levels
+
+* Powerup
+
+* Total win graphic after completing all levels
