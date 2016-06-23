@@ -70,24 +70,16 @@ Maze.prototype.render = function() {
 
       $mazeSpace.append("")
 
-      if (maze.spaces[x][y]["east"] === true) {
-        $mazeSpace.addClass("eastWall");
-      }
-      if (maze.spaces[x][y]["north"] === true) {
-        $mazeSpace.addClass("northWall");
-      }
-      if (maze.spaces[x][y]["playerSpace"] === true) {
-        $mazeSpace.addClass("playerSpace");
-      }
-      if (maze.spaces[x][y]["minotaurSpace"] === true) {
-        $mazeSpace.addClass("minotaurSpace");
+      var attrArray = ["east", "north", "playerSpace", "minotaurSpace", "endSpace"];
+
+      for (var i = 0; i < attrArray.length; i++) {
+        if (maze.spaces[x][y][attrArray[i]] === true) {
+          $mazeSpace.addClass(attrArray[i]);
+        }
       }
       if (maze.spaces[x][y]["gavelSpace"] === true) {
         $mazeSpace.addClass("gavelSpace");
         $mazeSpace.addClass("gavelToggle");
-      }
-      if(maze.spaces[x][y]["endSpace"] === true) {
-        $mazeSpace.addClass("endSpace");
       }
     }
   }
