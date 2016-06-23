@@ -152,8 +152,6 @@ Maze.prototype.gavel = function(x, y) {
 
 Player.prototype.gavel = function(x, y) {
   if (this.x === x && this.y === y && $('td.gavelToggle').hasClass("gavelSpace")) {
-    // $('#message').text("BUSTED!");
-    // $("#message").fadeIn(500).delay(0).fadeOut(500)
   }
 }
 

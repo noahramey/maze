@@ -225,7 +225,7 @@ width: 130px;
   display: none;
   top: 35%;
   left: 20%;
-  z-index: 999;
+  z-index: 888;
   font-size: 100px;
   font-weight: bold;
   background-image: url(../img/policelights.gif);
@@ -254,4 +254,15 @@ width: 130px;
 #star {
   width: 50px;
   height: auto;
+}
+
+#victory-page {
+  position: absolute;
+  background-image: url(../img/victory.gif);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  z-index: 999;
+  display: none;
 }
