@@ -34,9 +34,9 @@ table {
   width: 600px;
   margin: 0 auto;
   border: 40px solid transparent;
-  -webkit-border-image: url(../img/barbedwire.png) 130 ;
+  /*-webkit-border-image: url(../img/barbedwire.png) 130 ;
   -o-border-image: url(../img/barbedwire.png) 130 ;
-  border-image: url(../img/barbedwire.png) 130 ;
+  border-image: url(../img/barbedwire.png) 130 ;*/
 }
 
 .east {
@@ -221,8 +221,19 @@ width: 130px;
 }
 
 #message {
-  z-index: 3;
-  font-size: 200px;
+  position: absolute;
+  display: none;
+  top: 35%;
+  left: 20%;
+  z-index: 999;
+  font-size: 100px;
+  font-weight: bold;
+  background-image: url(../img/policelights.gif);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top: 20px solid black;
+  border-bottom: 20px solid black;
 }
 
 #badgeHollow {

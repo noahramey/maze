@@ -166,7 +166,7 @@ Player.prototype.gavel = function(x, y) {
 
 function minoCrunch() {
   if(player.x === minotaur.x && player.y === minotaur.y || player.x === juggernaut.x && player.y === juggernaut.y || maze.spaces[player.x][player.y].gavelSpace === true) {
-    $("#message").fadeIn(500).delay(0).fadeOut(500);
+    $("#message").fadeIn(1000).delay(0).fadeOut(1000);
     maze.spaces[player.x][player.y].playerSpace = false;
     maze.spaces[maze.startX][maze.startY].playerSpace = true;
     player.x = maze.startX;
