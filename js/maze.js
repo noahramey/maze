@@ -172,26 +172,16 @@ function minoCrunch() {
 function mazeWalls(xVertWallsArray, yVertWallsArray, xHorizWallsArray, yHorizWallsArray, mazeSize){
   for (var i = 0; i < xVertWallsArray.length; i++) {
     maze.createWall(xVertWallsArray[i], yVertWallsArray[i], "east");
-  }
-  for (var i = 0; i < xVertWallsArray.length; i++) {
     maze.createWall(xVertWallsArray[i]+1, yVertWallsArray[i], "west");
   }
   for (var i = 0; i < xHorizWallsArray.length; i++) {
     maze.createWall(xHorizWallsArray[i], yHorizWallsArray[i], "north");
-  }
-  for (var i = 0; i < xHorizWallsArray.length; i++) {
     maze.createWall(xHorizWallsArray[i], yHorizWallsArray[i]+1, "south");
   }
   for (var i = 1; i <= mazeSize; i++) {
     maze.createWall(1, i, "west");
-  }
-  for (var i = 1; i <= mazeSize; i++) {
     maze.createWall(i, mazeSize, "north");
-  }
-  for (var i = 1; i <= mazeSize; i++) {
     maze.createWall(mazeSize, i, "east");
-  }
-  for (var i = 1; i <= mazeSize; i++) {
     maze.createWall(i, 1, "south");
   }
 }
