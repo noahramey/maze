@@ -37,7 +37,7 @@ $(document).ready(function() {
     $("#badgeHollow").hide();
     $("#notoriety").hide();
     $(".instructions button").hide();
-    $(".container").css('background-image', 'none')
+    $(".container").css('background-image', 'none');
     $(".maze table").show();
     $(".winning-image").hide();
 
@@ -72,9 +72,8 @@ $(document).ready(function() {
       $(".instructions p").text("Grab and smash your computer before you can escape.");
       maze = new Maze(15,15);
       maze.setStart(8,15, "south");
-      maze.setEnd(8,1);
 
-      var xVertWallsArray = [1,1,1,1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,7,7,7,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,10,10,10,10,10,10,11,11,11,11,11,11,11,12,12,12,12,12,13,13,13,13,13,13,13,13,14,14,14,14,14,14,14,14,14,14];
+      var xVertWallsArray = [1,1,1,1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,7,7,7,7,7,7,7,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,10,10,10,10,10,10,11,11,11,11,11,11,11,12,12,12,12,12,13,13,13,13,13,13,13,13,14,14,14,14,14,14,14,14,14,14];
       var yVertWallsArray = [2,4,7,8,11,12,13,4,6,9,10,11,13,14,5,7,9,10,12,13,2,3,4,5,6,8,11,12,13,14,1,4,5,7,9,10,12,14,15,2,4,6,8,9,14,1,2,5,6,9,12,13,14,3,4,5,7,8,10,11,12,13,14,3,9,12,14,15,2,5,6,7,8,13,1,2,3,6,9,13,14,8,9,10,14,15,2,3,4,7,8,11,13,14,1,4,5,6,7,8,9,10,12,15];
       var xHorizWallsArray = [1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,4,4,4,4,4,5,5,5,5,6,6,6,6,6,6,6,7,7,7,7,7,7,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,13,13,13,13,13,13,13,14,14,14,14,14,15,15,15];
       var yHorizWallsArray = [2,5,9,14,1,4,5,6,9,12,14,1,2,3,5,7,8,11,14,2,3,6,8,10,2,6,9,12,2,3,5,7,10,12,13,2,3,6,7,10,11,1,3,6,8,10,14,1,2,5,6,8,10,1,3,4,5,7,9,10,11,13,3,4,7,9,10,11,12,14,2,4,5,6,7,10,11,1,3,5,8,10,11,12,2,5,9,11,13,2,10,13];
@@ -84,19 +83,20 @@ $(document).ready(function() {
       maze.spaces[15][6].computerSpace = true;
       maze.gavel(5,6);
       maze.render();
-
       var myMinoMove = setInterval(minoTimer, 200);
       player = new Player(8,15, maze);
       minotaur = new Player(3, 8, maze);
       juggernaut = new Player(10, 14, maze);
 
       $("#compbtn").click(function() {
+        maze.setEnd(7,2);
+        $("#zoolander").fadeIn(500).delay(1500).fadeOut(500);
         $('#computer').hide();
         $('#compsmash').show();
         $("#compbtn").hide();
       });
 
-    } else if (player.x === 8 && player.y === 1) {
+    } else if (player.x === 7 && player.y === 2) {
       maze = new Maze(20,20);
       maze.setStart(8,8, "south");
       maze.setEnd(4,3);

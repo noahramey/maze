@@ -228,6 +228,20 @@ width: 130px;
   width: 220px;
 }
 
+#zoolander {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 65px;
+  z-index: 888;
+  height: 600px;
+  width: 600px;
+  background-image: url(../img/smash.gif);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 #message {
   position: absolute;
   display: none;
