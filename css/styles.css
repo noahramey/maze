@@ -82,6 +82,7 @@ table {
   background-image: url('../img/plane.png');
   background-color: white;
   background-size: 100%;
+  border-bottom: 2px dashed grey;
 }
 
 .winning-image {
@@ -125,8 +126,6 @@ table {
   -moz-box-shadow: 0px 6px 0px 3px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
   box-shadow: 0px 6px 0px 3px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
 }
-
-
 
 #east, #west {
   display: inline-block;
@@ -205,7 +204,7 @@ width: 130px;
 }
 
 #level2 {
-  margin-left: -100px;
+  left: 70px;
   display:none;
   position: absolute;
   margin-top: 175px;
@@ -213,7 +212,7 @@ width: 130px;
 }
 
 #badgeHollow {
-  margin-left: -100px;
+  left: 70px;
   position: absolute;
   display:none;
   width:220px;
