@@ -128,13 +128,19 @@ function minoTimer() {
   juggernaut.moveMinotaur();
 };
 
+Player.prototype.escape = function () {
+  if (player.x === player.maze.endX && player.y === player.maze.endY) {
+    $(".escape").hide();
+
+  }
+};
 
 Player.prototype.win = function(){
   if (player.x === player.maze.endX && player.y === player.maze.endY) {
     $(".maze table").hide();
     $(".winning-image").fadeIn();
     $(".container").css('background-image', 'url(img/policelights.gif)');
-    $("#walter").css('background-image', "url(img/playericon.gif)");
+    $("#walter").css('background-image', "url(img/level-win.gif)");
     $("#notoriety").show();
     $(".instructions").hide();
     $(".controls").hide();
