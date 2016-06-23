@@ -220,6 +220,11 @@ width: 130px;
   width: 220px;
 }
 
+#message {
+  z-index: 3;
+  font-size: 200px;
+}
+
 #badgeHollow {
   left: 70px;
   position: absolute;
