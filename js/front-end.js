@@ -24,7 +24,8 @@ $(document).ready(function() {
     $(".instructions").prepend("<h6>Level 1</h6>");
     $(".instructions h2").text("Get out of here, Walter!");
     $(".instructions p").text("Don't forget your fake ID. It might come in handy.");
-    $(".instructions").css('background-image', 'none')
+    $(".instructions").css('background-image', 'none');
+    $("#star1").show();
   });
 
 
@@ -36,15 +37,16 @@ $(document).ready(function() {
     $("#badgeHollow").hide();
     $("#notoriety").hide();
     $(".instructions button").hide();
-    $(".instructions h6").text("Level 2");
-    $(".instructions h2").text("Evade the Law!");
-    $(".instructions p").text("Maneuver past FBI agents and the gavel to catch your next flight.");
     $(".container").css('background-image', 'none')
     $(".maze table").show();
     $(".winning-image").hide();
 
 
     if (player.x === 5 && player.y === 5) {
+      $("#star2").show();
+      $(".instructions h6").text("Level 2");
+      $(".instructions h2").text("Evade the Law!");
+      $(".instructions p").text("Maneuver past FBI agents and the gavel to catch your next flight.");
       maze = new Maze(10,10);
       maze.setStart(1,10, "south");
       maze.setEnd(10,4);
@@ -64,6 +66,10 @@ $(document).ready(function() {
       juggernaut = new Player(8, 8, maze);
     }
     else if (player.x === 10 && player.y === 4) {
+      $("#star3").show();
+      $(".instructions h6").text("Level 3");
+      $(".instructions h2").text("Destroy the Evidence!");
+      $(".instructions p").text("Grab and smash your computer before you can escape.");
       maze = new Maze(15,15);
       maze.setStart(8,15, "south");
       maze.setEnd(8,1);
@@ -75,6 +81,7 @@ $(document).ready(function() {
       mazeWalls(xVertWallsArray, yVertWallsArray, xHorizWallsArray, yHorizWallsArray, 15);
 
       maze.spaces[8][15].playerSpace = true;
+      maze.spaces[15][6].computerSpace = true;
       maze.gavel(5,6);
       maze.render();
 
@@ -83,6 +90,11 @@ $(document).ready(function() {
       minotaur = new Player(3, 8, maze);
       juggernaut = new Player(10, 14, maze);
 
+      $("#compbtn").click(function() {
+        $('#computer').hide();
+        $('#compsmash').show();
+        $("#compbtn").hide();
+      });
     }
   });
 

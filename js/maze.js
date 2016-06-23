@@ -70,7 +70,7 @@ Maze.prototype.render = function() {
 
       $mazeSpace.append("")
 
-      var attrArray = ["east", "north", "playerSpace", "minotaurSpace", "endSpace", "idSpace"];
+      var attrArray = ["east", "north", "playerSpace", "minotaurSpace", "endSpace", "idSpace", 'computerSpace'];
 
       for (var i = 0; i < attrArray.length; i++) {
         if (maze.spaces[x][y][attrArray[i]] === true) {
