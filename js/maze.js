@@ -340,6 +340,9 @@ $(document).ready(function() {
       maze.render();
 
       player = new Player(8,15, maze);
+      minotaur = new Player(3, 8, maze);
+      juggernaut = new Player(10, 14, maze);
+
     }
   });
 
