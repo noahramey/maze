@@ -221,7 +221,13 @@ Player.prototype.win = function(){
   if (player.x === player.maze.endX && player.y === player.maze.endY) {
     $(".maze table").hide();
     $(".winning-image").fadeIn();
-    $(".container").css('background-image', 'url(img/policelights.gif)')
+    $(".container").css('background-image', 'url(img/policelights.gif)');
+    $("#walter").css('background-image', "url(img/playericon.gif)");
+    $("#notoriety").show();
+    $(".instructions").hide();
+    $(".controls").hide();
+    $("#level2").show();
+    $("#badgeHollow").show();
   }
 }
 
@@ -313,6 +319,15 @@ $(document).ready(function() {
 
 
   $("#level2").click(function() {
+    $(".instructions").show();
+    $(".controls").show();
+    $("#level2").hide();
+    $("#badgeHollow").hide();
+    $("#notoriety").hide();
+    $(".instructions button").hide();
+    $(".instructions h6").text("Level 2");
+    $(".instructions h2").text("Evade the Law!");
+    $(".instructions p").text("Maneuver past FBI agents and the gavel to catch your next flight.");
     $(".container").css('background-image', 'none')
     $(".maze table").show();
     $(".winning-image").hide();

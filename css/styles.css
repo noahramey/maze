@@ -1,15 +1,15 @@
 /*LAYOUT*/
-
-
 body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
+
 .container {
   padding-top: 40px;
   width: 100%;
   text-align: center;
+  background-size: 100% 120%;
 }
 
 table {
@@ -21,9 +21,7 @@ table {
   width: 500px;
   margin: 0 auto;
   display: none;
-
 }
-
 
 #intro {
   height: 500px;
@@ -43,9 +41,9 @@ table {
   border-top: 2px solid white;
 }
 
- .mazeSpace {
-   height: 50px;
-   width: 50px;
+.mazeSpace {
+  height: 50px;
+  width: 50px;
  }
 
 .startPoint {
@@ -88,8 +86,20 @@ table {
 
 .winning-image {
   display: none;
-  /*width: 500px;
-  height: 500px;*/
+}
+
+#walterWrapper {
+  width:100%;
+  text-align: center;
+}
+
+#walter, #jail {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 500px;
+  width: 500px;
+  margin: 0 auto;
 }
 
 .keypad {
@@ -185,11 +195,39 @@ table {
   margin-top: 5%;
 }
 
-#start {
+#start, #level2 {
 background-image: linear-gradient(-180deg, #EAEAEA 0%, #D9D9D9 100%);
 border: 1px solid #979797;
 box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.11);
 border-radius: 8px;
 height: 40px;
 width: 130px;
+}
+
+#level2 {
+  margin-left: -100px;
+  display:none;
+  position: absolute;
+  margin-top: 175px;
+  width: 220px;
+}
+
+#badgeHollow {
+  margin-left: -100px;
+  position: absolute;
+  display:none;
+  width:220px;
+  margin-top: 100px;
+}
+
+#notoriety {
+  display: none;
+  font-family: 'Oswald', sans-serif;
+  color: white;
+  margin-top: 135px;
+}
+
+#star {
+  width: 50px;
+  height: auto;
 }
