@@ -70,7 +70,7 @@ Maze.prototype.render = function() {
 
       $mazeSpace.append("")
 
-      var attrArray = ["east", "north", "playerSpace", "minotaurSpace", "endSpace", "idSpace"];
+      var attrArray = ["east", "north", "playerSpace", "minotaurSpace", "endSpace", "idSpace", 'computerSpace'];
 
       for (var i = 0; i < attrArray.length; i++) {
         if (maze.spaces[x][y][attrArray[i]] === true) {
@@ -80,6 +80,19 @@ Maze.prototype.render = function() {
       if (maze.spaces[x][y]["gavelSpace"] === true) {
         $mazeSpace.addClass("gavelSpace");
         $mazeSpace.addClass("gavelToggle");
+      }
+      if (maze.spaces[3][3].playerSpace === true) {
+        $mazeSpace.removeClass("idSpace");
+        maze.spaces[3][3].idSpace = false;
+        $('#fakeid').fadeIn();
+      }
+      if (maze.height === 15) {
+        if (maze.spaces[15][6].playerSpace === true) {
+          $mazeSpace.removeClass("computerSpace");
+          maze.spaces[15][6].computerSpace = false;
+          $('#computer').fadeIn();
+          $('#compbtn').fadeIn();
+        }
       }
     }
   }
@@ -146,6 +159,7 @@ Player.prototype.win = function(){
     $(".controls").hide();
     $("#level").show();
     $("#badgeHollow").show();
+    $('#fakeid').hide();
     $("#start").blur();
     $("#level").show();
     $("#level").focus();
