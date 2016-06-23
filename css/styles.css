@@ -12,20 +12,26 @@ body {
   background-size: 100% 120%;
 }
 
+/*.maze {
+  border: 1px solid red;
+  height: 100%;
+  width: 100%;
+}*/
+
 table {
   background-image: linear-gradient(-180deg, #EAEAEA 0%, #D9D9D9 100%);
   border: 1px solid #979797;
   box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.11);
   border-radius: 8px;
-  height: 500px;
-  width: 500px;
+  height: 600px;
+  width: 600px;
   margin: 0 auto;
   display: none;
 }
 
 #intro {
-  height: 500px;
-  width: 500px;
+  height: 600px;
+  width: 600px;
   margin: 0 auto;
   border: 40px solid transparent;
   -webkit-border-image: url(../img/barbedwire.png) 130 ;
@@ -41,9 +47,9 @@ table {
   border-top: 2px solid white;
 }
 
-.mazeSpace {
-  height: 50px;
-  width: 50px;
+ .mazeSpace {
+   height: 40px;
+   width: 40px;
  }
 
 .startPoint {
@@ -103,18 +109,20 @@ table {
   margin: 0 auto;
 }
 
+#level {
+  background-image: linear-gradient(-180deg, #EAEAEA 0%, #D9D9D9 100%);
+  border: 1px solid #979797;
+  box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.11);
+  border-radius: 8px;
+  height: 40px;
+  width: 130px;
+  display: none;
+}
 .keypad {
-  /*background: lightgrey;*/
   width: 70px;
   display: block;
   margin: 0 auto;
-  /*box-shadow:
-  -webkit-box-shadow:  0px 6px 0px 6px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
-  -moz-box-shadow: 0px 6px 0px 6px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
-  box-shadow: 0px 6px 0px 6px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);*/
   margin-bottom: 10px;
-  /*border: 1px solid #222;*/
-  /*border-top: none;*/
 }
 
 .keypad:focus {
@@ -138,7 +146,7 @@ table {
   border: 2px solid lightgray;
   box-shadow: 12px 12px 4px 1px rgba(0,0,0,0.21);
   border-radius: 2px;
-  height: 500px;
+  height: 600px;
   width: 250px;
   text-align: center;
   padding-bottom: 30px;
@@ -147,7 +155,7 @@ table {
 
 .instructions {
   background-image: url('../img/badge.png');
-  background-position: 50% 63%;
+  background-position: 50% 58%;
   background-repeat: no-repeat;
   background-size: 80%;
 }
@@ -157,11 +165,11 @@ table {
   color: navy;
   text-align: center;
   font-size: 2em;
-  padding: 5px 0 20px;
+  padding: 20px 0 20px;
 }
 
 .instructions button {
-  margin-top: 95%;
+  margin-top: 118%;
 }
 
 .instructions p {
@@ -180,7 +188,7 @@ table {
 .controls h2 {
   font-family: 'Oswald', sans-serif;
   color: white;
-  margin-top: 80px;
+  margin-top: 130px;
   text-align: center;
   font-size: 3em;
   padding-bottom: 20px;
@@ -194,7 +202,7 @@ table {
   margin-top: 5%;
 }
 
-#start, #level2 {
+#start, #level {
 background-image: linear-gradient(-180deg, #EAEAEA 0%, #D9D9D9 100%);
 border: 1px solid #979797;
 box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.11);
@@ -203,9 +211,9 @@ height: 40px;
 width: 130px;
 }
 
-#level2 {
+#level {
   left: 70px;
-  display:none;
+  display: none;
   position: absolute;
   margin-top: 175px;
   width: 220px;

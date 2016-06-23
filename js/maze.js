@@ -96,125 +96,48 @@ Maze.prototype.render = function() {
   }
 }
 
-Player.prototype.moveNorth = function(x, y) {
-  if (this.maze.spaces[x][y].north === false) {
-    this.maze.spaces[x][y].playerSpace = false;
-    this.x = x;
-    this.y = y+1;
-  this.maze.spaces[x][y+1].playerSpace = true;
+Player.prototype.move = function(x, y, i, j, direction, icon) {
+  if (this.maze.spaces[x][y][direction] === false) {
+    this.maze.spaces[x][y][icon] = false;
+    this.x = x + i;
+    this.y = y + j;
+  this.maze.spaces[x + i][y + j][icon] = true;
   }
   this.win();
   maze.render();
   $('td.gavelToggle').removeClass("gavelSpace");
 }
 
-Player.prototype.moveEast = function(x, y) {
-  if (this.maze.spaces[x][y].east === false) {
-    this.maze.spaces[x][y].playerSpace = false;
-    this.x = x+1;
-    this.y = y;
-  this.maze.spaces[x+1][y].playerSpace = true;
-  }
-  this.win();
-  maze.render();
-  $('td.gavelToggle').removeClass("gavelSpace");
-}
-
-Player.prototype.moveSouth = function(x, y) {
-  if (this.maze.spaces[x][y].south === false) {
-    this.maze.spaces[x][y].playerSpace = false;
-    this.x = x;
-    this.y = y-1;
-  this.maze.spaces[x][y-1].playerSpace = true;
-  }
-  this.win();
-  maze.render();
-  $('td.gavelToggle').removeClass("gavelSpace");
-}
-
-Player.prototype.moveWest = function(x, y) {
-  if (this.maze.spaces[x][y].west === false) {
-    this.maze.spaces[x][y].playerSpace = false;
-    this.x = x-1;
-    this.y = y;
-  this.maze.spaces[x-1][y].playerSpace = true;
-  }
-  this.win();
-  maze.render();
-  $('td.gavelToggle').removeClass("gavelSpace");
-}
 
 Player.prototype.moveMinotaur = function () {
-  var i = Math.floor(Math.random() * 4);
-  if (i === 0) {
-    this.minotaurEast(this.x, this.y);
+  var randomMove = Math.floor(Math.random() * 4);
+  if (randomMove === 0) {
+    this.move(this.x, this.y, 1, 0, "east", "minotaurSpace");
+    player.gavel(5,6);
+    minoCrunch();
   }
-  else if (i === 1) {
-    this.minotaurNorth(this.x, this.y);
+  else if (randomMove === 1) {
+    this.move(this.x, this.y, 0, 1, "north", "minotaurSpace");
+    player.gavel(5,6);
+    minoCrunch();
   }
-  else if (i === 2) {
-    this.minotaurWest(this.x, this.y);
+  else if (randomMove === 2) {
+    this.move(this.x, this.y, -1, 0, "west", "minotaurSpace");
+    player.gavel(5,6);
+    minoCrunch();
   }
-  else if (i === 3) {
-    this.minotaurSouth(this.x, this.y);
+  else if (randomMove === 3) {
+    this.move(this.x, this.y, 0, -1, "south", "minotaurSpace");
+    $('td.gavelToggle').addClass("gavelSpace");
+    player.gavel(5,6);
+    minoCrunch();
   }
-  console.log(this.x, this.y);
 };
 
-Player.prototype.minotaurNorth = function(x, y) {
-  if (this.maze.spaces[x][y].north === false) {
-    this.maze.spaces[x][y].minotaurSpace = false;
-    this.x = x;
-    this.y = y+1;
-  this.maze.spaces[x][y+1].minotaurSpace = true;
-  }
-  this.win();
-  maze.render();
-  $('td.gavelToggle').removeClass("gavelSpace");
-  player.gavel(5,6);
-  minoCrunch();
-}
-
-Player.prototype.minotaurEast = function(x, y) {
-  if (this.maze.spaces[x][y].east === false) {
-    this.maze.spaces[x][y].minotaurSpace = false;
-    this.x = x+1;
-    this.y = y;
-  this.maze.spaces[x+1][y].minotaurSpace = true;
-  }
-  this.win();
-  maze.render();
-  $('td.gavelToggle').removeClass("gavelSpace");
-  player.gavel(5,6);
-  minoCrunch();
-}
-
-Player.prototype.minotaurSouth = function(x, y) {
-  if (this.maze.spaces[x][y].south === false) {
-    this.maze.spaces[x][y].minotaurSpace = false;
-    this.x = x;
-    this.y = y-1;
-  this.maze.spaces[x][y-1].minotaurSpace = true;
-  }
-  this.win();
-  maze.render();
-  player.gavel(5,6);
-  minoCrunch();
-}
-
-Player.prototype.minotaurWest = function(x, y) {
-  if (this.maze.spaces[x][y].west === false) {
-    this.maze.spaces[x][y].minotaurSpace = false;
-    this.x = x-1;
-    this.y = y;
-  this.maze.spaces[x-1][y].minotaurSpace = true;
-  }
-  this.win();
-  maze.render();
-  $('td.gavelToggle').removeClass("gavelSpace");
-  player.gavel(5,6);
-  minoCrunch();
-}
+function minoTimer() {
+  minotaur.moveMinotaur();
+  juggernaut.moveMinotaur();
+};
 
 
 Player.prototype.win = function(){
@@ -226,8 +149,11 @@ Player.prototype.win = function(){
     $("#notoriety").show();
     $(".instructions").hide();
     $(".controls").hide();
-    $("#level2").show();
+    $("#level").show();
     $("#badgeHollow").show();
+    $("#start").blur();
+    $("#level").show();
+    $("#level").focus();
   }
 }
 
@@ -237,8 +163,8 @@ Maze.prototype.gavel = function(x, y) {
 
 Player.prototype.gavel = function(x, y) {
   if (this.x === x && this.y === y && $('td.gavelToggle').hasClass("gavelSpace")) {
-    $('#message').text("BUSTED!");
-    $("#message").fadeIn(500).delay(0).fadeOut(500)
+    // $('#message').text("BUSTED!");
+    // $("#message").fadeIn(500).delay(0).fadeOut(500)
   }
 }
 
@@ -250,12 +176,12 @@ Player.prototype.gavel = function(x, y) {
 // }
 
 function minoCrunch() {
-  if(player.x === minotaur.x && player.y === minotaur.y || player.x === juggernaut.x && player.y === juggernaut.y) {
+  if(player.x === minotaur.x && player.y === minotaur.y || player.x === juggernaut.x && player.y === juggernaut.y || maze.spaces[player.x][player.y].gavelSpace === true) {
     alert("You're going to the slammer");
     maze.spaces[player.x][player.y].playerSpace = false;
-    maze.spaces[1][10].playerSpace = true;
-    player.x = 1;
-    player.y = 10;
+    maze.spaces[maze.startX][maze.startY].playerSpace = true;
+    player.x = maze.startX;
+    player.y = maze.startY;
   }
 }
 
@@ -318,10 +244,11 @@ $(document).ready(function() {
   });
 
 
-  $("#level2").click(function() {
+
+  $("#level").click(function() {
     $(".instructions").show();
     $(".controls").show();
-    $("#level2").hide();
+    $("#level").hide();
     $("#badgeHollow").hide();
     $("#notoriety").hide();
     $(".instructions button").hide();
@@ -331,28 +258,48 @@ $(document).ready(function() {
     $(".container").css('background-image', 'none')
     $(".maze table").show();
     $(".winning-image").hide();
-    maze = new Maze(10,10);
-    maze.setStart(1,10, "south");
-    maze.setEnd(10,4);
-    var xVertWallsArray = [1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,4,4,5,5,5,5,5,5,6,6,6,7,7,7,7,7,8,8,8,8,9,9,9,9,9,9,9];
-    var yVertWallsArray = [2,4,5,8,3,4,5,8,9,10,2,5,6,7,8,9,1,4,2,5,7,8,9,10,1,4,6,2,3,7,9,10,1,5,7,8,2,3,4,6,7,8,9];
-    var xHorizWallsArray = [1,1,1,2,2,2,2,3,3,3,4,4,4,4,4,5,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,8,9,9,9,9,10];
-    var yHorizWallsArray = [2,6,9,1,5,6,7,1,3,6,2,3,5,7,9,2,3,5,6,8,3,5,7,8,2,3,5,9,2,4,5,6,8,2,3,6,9,4];
-    mazeWalls(xVertWallsArray, yVertWallsArray, xHorizWallsArray, yHorizWallsArray, 10);
 
-    maze.spaces[1][10].playerSpace = true;
-    maze.gavel(5,6);
-    maze.render();
 
-    function minoTimer() {
-      minotaur.moveMinotaur();
-      juggernaut.moveMinotaur();
-    };
+    if (player.x === 5 && player.y === 5) {
+      maze = new Maze(10,10);
+      maze.setStart(1,10, "south");
+      maze.setEnd(10,4);
+      var xVertWallsArray = [1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,4,4,5,5,5,5,5,5,6,6,6,7,7,7,7,7,8,8,8,8,9,9,9,9,9,9,9];
+      var yVertWallsArray = [2,4,5,8,3,4,5,8,9,10,2,5,6,7,8,9,1,4,2,5,7,8,9,10,1,4,6,2,3,7,9,10,1,5,7,8,2,3,4,6,7,8,9];
+      var xHorizWallsArray = [1,1,1,2,2,2,2,3,3,3,4,4,4,4,4,5,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,8,9,9,9,9,10];
+      var yHorizWallsArray = [2,6,9,1,5,6,7,1,3,6,2,3,5,7,9,2,3,5,6,8,3,5,7,8,2,3,5,9,2,4,5,6,8,2,3,6,9,4];
+      mazeWalls(xVertWallsArray, yVertWallsArray, xHorizWallsArray, yHorizWallsArray, 10);
 
-    var myMinoMove = setInterval(minoTimer, 200);
-    player = new Player(1,10, maze);
-    minotaur = new Player(1, 5, maze);
-    juggernaut = new Player(8, 8, maze);
+      maze.spaces[maze.startX][maze.startY].playerSpace = true;
+      maze.gavel(5,6);
+      maze.render();
+
+      var myMinoMove = setInterval(minoTimer, 200);
+      player = new Player(1,10, maze);
+      minotaur = new Player(1, 5, maze);
+      juggernaut = new Player(8, 8, maze);
+    }
+    else if (player.x === 10 && player.y === 4) {
+      maze = new Maze(15,15);
+      maze.setStart(8,15, "south");
+      maze.setEnd(8,1);
+
+      var xVertWallsArray = [1,1,1,1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,7,7,7,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,10,10,10,10,10,10,11,11,11,11,11,11,11,12,12,12,12,12,13,13,13,13,13,13,13,13,14,14,14,14,14,14,14,14,14,14];
+      var yVertWallsArray = [2,4,7,8,11,12,13,4,6,9,10,11,13,14,5,7,9,10,12,13,2,3,4,5,6,8,11,12,13,14,1,4,5,7,9,10,12,14,15,2,4,6,8,9,14,1,2,5,6,9,12,13,14,3,4,5,7,8,10,11,12,13,14,3,9,12,14,15,2,5,6,7,8,13,1,2,3,6,9,13,14,8,9,10,14,15,2,3,4,7,8,11,13,14,1,4,5,6,7,8,9,10,12,15];
+      var xHorizWallsArray = [1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,4,4,4,4,4,5,5,5,5,6,6,6,6,6,6,6,7,7,7,7,7,7,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,13,13,13,13,13,13,13,14,14,14,14,14,15,15,15];
+      var yHorizWallsArray = [2,5,9,14,1,4,5,6,9,12,14,1,2,3,5,7,8,11,14,2,3,6,8,10,2,6,9,12,2,3,5,7,10,12,13,2,3,6,7,10,11,1,3,6,8,10,14,1,2,5,6,8,10,1,3,4,5,7,9,10,11,13,3,4,7,9,10,11,12,14,2,4,5,6,7,10,11,1,3,5,8,10,11,12,2,5,9,11,13,2,10,13];
+      mazeWalls(xVertWallsArray, yVertWallsArray, xHorizWallsArray, yHorizWallsArray, 15);
+
+      maze.spaces[8][15].playerSpace = true;
+      maze.gavel(5,6);
+      maze.render();
+
+      var myMinoMove = setInterval(minoTimer, 200);
+      player = new Player(8,15, maze);
+      minotaur = new Player(3, 8, maze);
+      juggernaut = new Player(10, 14, maze);
+
+    }
   });
 
   /***********************************
@@ -369,32 +316,32 @@ $(document).ready(function() {
     $(button).mousedown(function(){$(this).toggleClass('btn-press')}); $(button).mouseup(function(){$(this).toggleClass('btn-press')});
   }
 
-  $('#north').click(function(){player.moveNorth(player.x, player.y)});
+  $('#north').click(function(){player.move(player.x, player.y, 0, 1, "north", "playerSpace")});
   userControls('#north');
 
-  $('#east').click(function(){player.moveEast(player.x, player.y)});
+  $('#east').click(function(){player.move(player.x, player.y, 1, 0, "east", "playerSpace")});
   userControls('#east');
 
-  $('#south').click(function(){player.moveSouth(player.x, player.y)});
+  $('#south').click(function(){player.move(player.x, player.y, 0, -1, "south", "playerSpace")});
   userControls('#south');
 
-  $('#west').click(function(){player.moveWest(player.x, player.y)});
+  $('#west').click(function(){player.move(player.x, player.y, -1, 0, "west", "playerSpace")});
   userControls('#west');
 
   $(document).keydown(function(e){
     switch(e.which) {
       case 37: //left arrow
-        player.moveWest(player.x, player.y);
+        player.move(player.x, player.y, -1, 0, "west", "playerSpace");
         break;
       case 38: //up arrow
-        player.moveNorth(player.x, player.y);
+        player.move(player.x, player.y, 0, 1, "north", "playerSpace");
         // $('#north').toggleClass('btn-press');
         break;
       case 39: //right arrow
-        player.moveEast(player.x, player.y);
+        player.move(player.x, player.y, 1, 0, "east", "playerSpace");
         break;
       case 40: //down arrow
-        player.moveSouth(player.x, player.y);
+        player.move(player.x, player.y, 0, -1, "south", "playerSpace");
         break;
     }
   });

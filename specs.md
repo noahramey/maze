@@ -79,8 +79,17 @@ A maze with with a character you can move through to the end.
 * MVP done with two levels, including styling, themes
 
 #### Thursday
-* & separate into separate files
+
+* Powerup
+
+* Better BUSTED animation
+
+* Splitting JS files
+
+* Button Focus
 
 * add maze levels
 
 * Refactoring
+
+* Level 2 styling
