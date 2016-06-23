@@ -70,7 +70,7 @@ Maze.prototype.render = function() {
 
       $mazeSpace.append("")
 
-      var attrArray = ["east", "north", "playerSpace", "minotaurSpace", "endSpace"];
+      var attrArray = ["east", "north", "playerSpace", "minotaurSpace", "endSpace", "idSpace"];
 
       for (var i = 0; i < attrArray.length; i++) {
         if (maze.spaces[x][y][attrArray[i]] === true) {
@@ -134,6 +134,12 @@ Player.prototype.win = function(){
     $(".maze table").hide();
     $(".winning-image").fadeIn();
     $(".container").css('background-image', 'url(img/policelights.gif)');
+    $("#walter").css('background-image', "url(img/playericon.gif)");
+    $("#notoriety").show();
+    $(".instructions").hide();
+    $(".controls").hide();
+    $("#level").show();
+    $("#badgeHollow").show();
     $("#start").blur();
     $("#level").show();
     $("#level").focus();
@@ -150,6 +156,13 @@ Player.prototype.gavel = function(x, y) {
     // $("#message").fadeIn(500).delay(0).fadeOut(500)
   }
 }
+
+// Player.prototype.fakeid = function(x, y) {
+//   if (this.x === x && this.y === y) {
+//     $("td.idSpace").css('display', 'none')
+//     $("#message").fadeIn(500).delay(0).fadeOut(500)
+//   }
+// }
 
 function minoCrunch() {
   if(player.x === minotaur.x && player.y === minotaur.y || player.x === juggernaut.x && player.y === juggernaut.y || maze.spaces[player.x][player.y].gavelSpace === true) {
@@ -192,7 +205,9 @@ $(document).ready(function() {
   mazeWalls(xVertWallsArray, yVertWallsArray, xHorizWallsArray, yHorizWallsArray, 5);
 
   maze.spaces[1][1].playerSpace = true;
+  maze.spaces[3][3].idSpace = true;
 
+  // player.fakeid(3,3);
   maze.render();
   player = new Player(1,1, maze);
 
@@ -200,10 +215,25 @@ $(document).ready(function() {
   $("#start").click(function() {
     $("#intro").hide();
     $("table").show();
+    $(".instructions button").hide();
+    $(".instructions").prepend("<h6>Level 1</h6>");
+    $(".instructions h2").text("Get out of here, Walter!");
+    $(".instructions p").text("Don't forget your fake ID. It might come in handy.");
+    $(".instructions").css('background-image', 'none')
   });
 
 
+
   $("#level").click(function() {
+    $(".instructions").show();
+    $(".controls").show();
+    $("#level").hide();
+    $("#badgeHollow").hide();
+    $("#notoriety").hide();
+    $(".instructions button").hide();
+    $(".instructions h6").text("Level 2");
+    $(".instructions h2").text("Evade the Law!");
+    $(".instructions p").text("Maneuver past FBI agents and the gavel to catch your next flight.");
     $(".container").css('background-image', 'none')
     $(".maze table").show();
     $(".winning-image").hide();
