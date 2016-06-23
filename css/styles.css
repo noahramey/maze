@@ -1,4 +1,6 @@
 /*LAYOUT*/
+
+
 body {
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,17 +21,28 @@ table {
   width: 500px;
   margin: 0 auto;
   display: none;
+
 }
+
 
 #intro {
   height: 500px;
   width: 500px;
   margin: 0 auto;
+  border: 40px solid transparent;
+  -webkit-border-image: url(../img/barbedwire.png) 130 ;
+  -o-border-image: url(../img/barbedwire.png) 130 ;
+  border-image: url(../img/barbedwire.png) 130 ;
 }
 
 .eastWall {
   border-right: 2px solid white;
 }
+
+.northWall {
+  border-top: 2px solid white;
+}
+
  .mazeSpace {
    height: 50px;
    width: 50px;
@@ -60,8 +73,17 @@ table {
   background-position: center;
 }
 
+.idSpace {
+  background-image: url('../img/id.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+}
+
 .endSpace {
-  background: green;
+  background-image: url('../img/plane.png');
+  background-color: white;
+  background-size: 100%;
 }
 
 .winning-image {
@@ -94,9 +116,7 @@ table {
   box-shadow: 0px 6px 0px 3px rgba(60,60,60, .95), inset 0px 0px 11px 6px rgba(94,94,94,1);
 }
 
-.northWall {
-  border-top: 2px solid white;
-}
+
 
 #east, #west {
   display: inline-block;
@@ -104,11 +124,11 @@ table {
   margin-right: 5px;
 }
 
-.instructions {
-  background-image: linear-gradient(-180deg, #5F8FC5 0%, #4E729B 100%);
-  border: 1px solid #979797;
-  box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.11);
-  border-radius: 8px;
+.instructions, .controls {
+  background-color: rgba(0,0,0,0.03);
+  border: 2px solid lightgray;
+  box-shadow: 12px 12px 4px 1px rgba(0,0,0,0.21);
+  border-radius: 2px;
   height: 500px;
   width: 250px;
   text-align: center;
@@ -116,16 +136,23 @@ table {
   margin: 0 auto;
 }
 
-.controls {
-  background-image: linear-gradient(-180deg, #C55F5F 0%, #9B4E4E 100%);
-  border: 1px solid #979797;
-  box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.11);
-  border-radius: 8px;
-  width: 250px;
-  height: 500px;
+.instructions {
+  background-image: url('../img/badge.png');
+  background-position: 50% 63%;
+  background-repeat: no-repeat;
+  background-size: 80%;
+}
+
+.instructions h2 {
+  font-family: 'Oswald', sans-serif;
+  color: navy;
   text-align: center;
-  padding-bottom: 30px;
-  margin: 0 auto;
+  font-size: 2em;
+  padding: 5px 0 20px;
+}
+
+.instructions button {
+  margin-top: 95%;
 }
 
 .instructions p {
@@ -135,13 +162,27 @@ table {
   font-size: 1.5em;
 }
 
-.controls h2, .instructions h2 {
+.controls {
+  background-image: url('http://i1209.photobucket.com/albums/cc383/Tcbear108/cages/Jail-Cell-Bars-psd52403.png');
+  background-size: 130%;
+  background-position: left;
+}
+
+.controls h2 {
   font-family: 'Oswald', sans-serif;
-  color: #E4E4E4;
-  /*color: #f9f9f9;*/
+  color: white;
+  margin-top: 80px;
   text-align: center;
-  font-size: 2em;
+  font-size: 3em;
   padding-bottom: 20px;
+   -webkit-text-fill-color: #FBC914;
+   -webkit-text-stroke-width: 2px;
+   -webkit-text-stroke-color: rgba(0,0,0,0.70);
+  letter-spacing: 1px;
+}
+
+.controls img:first-of-type {
+  margin-top: 5%;
 }
 
 #start {

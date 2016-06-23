@@ -86,6 +86,9 @@ Maze.prototype.render = function() {
         $mazeSpace.addClass("gavelSpace");
         $mazeSpace.addClass("gavelToggle");
       }
+      if(maze.spaces[x][y]["idSpace"] === true) {
+        $mazeSpace.addClass("idSpace");
+      }
       if(maze.spaces[x][y]["endSpace"] === true) {
         $mazeSpace.addClass("endSpace");
       }
@@ -233,6 +236,13 @@ Player.prototype.gavel = function(x, y) {
   }
 }
 
+// Player.prototype.fakeid = function(x, y) {
+//   if (this.x === x && this.y === y) {
+//     $("td.idSpace").css('display', 'none')
+//     $("#message").fadeIn(500).delay(0).fadeOut(500)
+//   }
+// }
+
 function minoCrunch() {
   if(player.x === minotaur.x && player.y === minotaur.y || player.x === juggernaut.x && player.y === juggernaut.y) {
     alert("You're going to the slammer");
@@ -284,7 +294,9 @@ $(document).ready(function() {
   mazeWalls(xVertWallsArray, yVertWallsArray, xHorizWallsArray, yHorizWallsArray, 5);
 
   maze.spaces[1][1].playerSpace = true;
+  maze.spaces[3][3].idSpace = true;
 
+  // player.fakeid(3,3);
   maze.render();
   player = new Player(1,1, maze);
 
@@ -292,6 +304,11 @@ $(document).ready(function() {
   $("#start").click(function() {
     $("#intro").hide();
     $("table").show();
+    $(".instructions button").hide();
+    $(".instructions").prepend("<h6>Level 1</h6>");
+    $(".instructions h2").text("Get out of here, Walter!");
+    $(".instructions p").text("Don't forget your fake ID. It might come in handy.");
+    $(".instructions").css('background-image', 'none')
   });
 
 
