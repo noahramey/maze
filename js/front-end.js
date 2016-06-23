@@ -95,6 +95,26 @@ $(document).ready(function() {
         $('#compsmash').show();
         $("#compbtn").hide();
       });
+
+    } else if (player.x === 8 && player.y === 1) {
+      maze = new Maze(20,20);
+      maze.setStart(8,8, "south");
+      maze.setEnd(4,3);
+
+      var xVertWallsArray = [];
+      var yVertWallsArray = [];
+      var xHorizWallsArray = [];
+      var yHorizWallsArray = [];
+      mazeWalls(xVertWallsArray, yVertWallsArray, xHorizWallsArray, yHorizWallsArray, 20);
+
+      maze.spaces[8][8].playerSpace = true;
+      maze.gavel(5,6);
+      maze.render();
+
+      var myMinoMove = setInterval(minoTimer, 200);
+      player = new Player(8,8, maze);
+      minotaur = new Player(1, 5, maze);
+      juggernaut = new Player(12, 16, maze);
     }
   });
 
