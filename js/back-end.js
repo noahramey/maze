@@ -149,7 +149,16 @@ Player.prototype.escape = function () {
 };
 
 Player.prototype.win = function(){
-  if (player.x === player.maze.endX && player.y === player.maze.endY) {
+  if (maze.height === 15 && player.x === 7 && player.y === 2) {
+    $(".maze table").empty();
+    $(".instructions").hide();
+    $(".controls").hide();
+    $("#conair").fadeIn(500);
+    setTimeout(function(){
+         window.location.reload();
+    }, 3000);
+  }
+  else if (player.x === player.maze.endX && player.y === player.maze.endY) {
     $(".maze table").hide();
     $(".winning-image").fadeIn();
     $(".container").css('background-image', 'url(img/policelights.gif)');
@@ -159,7 +168,7 @@ Player.prototype.win = function(){
     $(".controls").hide();
     $("#level").show();
     $("#badgeHollow").show();
-    $('#fakeid').hide();
+    $('#fakeid').remove();
     $("#start").blur();
     $("#level").show();
     $("#level").focus();
